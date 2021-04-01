@@ -1,15 +1,31 @@
+//globally clal userProfile as an object with empty attributes
+var userProfile = {
+    Age: "", 
+    Weight: "",
+    Height: ""
+};
+
 //show modal on profile button click
-$("#submit-button").click(function() {
-    debugger;
+$("#profile-button").click(function() {
     $("#profile-modal").show();
 });
 
 //dismiss main modal when closed
 $(".close-btn").click(function() {
-    debugger;
     $("#profile-modal").hide();
 });
 
-// $("#submit-button").click(function(){
-    
-// })
+//send user stats to userProfile object
+$("#submit-button").click(function() {
+    var userAge = $("input[id='age'").val();
+    var userWeight = $("input[id='weight'").val();
+    var userHeight = $("input[id='height'").val();
+    userProfile.Age = userAge;
+    userProfile.Weight = userWeight;
+    userProfile.Height = userHeight;
+    saveProfile(userProfile);
+});
+
+var saveProfile = function(userProfile) {
+    localStorage.setItem("userProfile", JSON.stringify(userProfile));
+};
