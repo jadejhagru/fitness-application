@@ -72,7 +72,7 @@ header {
     font-size: 20px;
 }
 
-button{
+#profile-button, #submit-button {
     width: 200px;
     padding: 15px 0;
     text-align: center;
@@ -85,7 +85,7 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+#submit-button:hover, #profile-button:hover {
     background: white;
     color: black;
     transition: 0.5s;
