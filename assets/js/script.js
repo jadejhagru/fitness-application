@@ -31,7 +31,6 @@ var saveProfile = function(userProfile) {
     localStorage.setItem("userProfile", JSON.stringify(userProfile));
 };
 
-<<<<<<< HEAD
 ///ANDRE'S STUFF - FEEL FREE TO COMMENT OUT - SHOULD NOT IMPACT ANYTHING ///////////////////////////////
 
 fetch(
@@ -207,6 +206,3 @@ $(".exercise-card").on("click","a",function()
   $(this).parent().parent().parent().find(".selected-value").text(text);
 });
 /////////////////////////////////////////////////////////////////////////////////////////////////
-=======
-//
->>>>>>> 1aa7579ad5e652dd994f38f66d620a3c3709676a
