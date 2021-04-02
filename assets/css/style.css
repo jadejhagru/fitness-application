@@ -1,11 +1,20 @@
-*{
+* {
     margin: 0;
-    padding: 0;
+    padding: 10px;
 }
 
 .wrapper {
     width: 1170px;
     margin: auto;
+}
+
+body {
+    background-image: url("../images/background.jfif");
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    text-align: center;
 }
 
 header {
@@ -89,4 +98,25 @@ header {
     background: white;
     color: black;
     transition: 0.5s;
+}
+
+#day {
+  word-wrap: normal;  
+}
+
+.card-group {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-group {
+    display: inline;
+}
+
+button {
+    margin: 1px;
+}
+
+span {
+    font-size: 8em;
 }
