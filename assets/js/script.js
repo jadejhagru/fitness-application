@@ -32,19 +32,16 @@ var saveProfile = function(userProfile) {
 };
 
 ///ANDRE'S STUFF - FEEL FREE TO COMMENT OUT - SHOULD NOT IMPACT ANYTHING ///////////////////////////////
-// var exerciseList = {
-    
-//     arms:
-//     {
-//         name:  ,
-//         description: '' , //fetch from weger
-//         image:'', //fetch from weger
-//         gif:'' //fetch from giphy
-//     }
-// }
+
+fetch(
+  'https://wger.de/api/v2/exercise/?format=json&limit=1000'
+)
+.then(function(response) {
+  return response.json();
+}).then(function(response) {console.log(response);})
 
 //Abs-Crunches
-fetch(
+var absCrunches = function () { fetch(
   'https://wger.de/api/v2/exercise/?format=json&limit=1000'
 )
 .then(function(response) {
@@ -65,7 +62,35 @@ fetch(
   })
   .then(function(response) {
     $(".exercise-graphic").attr('src',response.data.images.downsized_large.url);
+})
+createExerciseCard("abs-crunches");
+};
+//
+
+var absCrunches = function () { fetch(
+  'https://wger.de/api/v2/exercise/?format=json&limit=1000'
+)
+.then(function(response) {
+  return response.json();
+})
+.then(function(response) {
+  $(".exercise-name").text(response.results[82].name);
+  $(".exercise-graphic").attr('alt',response.results[82].name);
+  $(".exercise-description").append(response.results[82].description);
+  $(".exercise-group").text('Musclue group: Abs');
 });
+
+fetch(
+  'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
+)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(response) {
+    $(".exercise-graphic").attr('src',response.data.images.downsized_large.url);
+})
+createExerciseCard("abs-crunches");
+};
 //
 
 
@@ -78,7 +103,7 @@ var createExerciseCard = function(exerciseId)
   //actual card code starts here - must have a pre-existing div
   var exerciseCard = $(".exercise-card-section div"); //will be the day box
   exerciseCard.addClass("card exercise-card");
-  exerciseCard.attr("id","exercirseId"); //will hold the exercise name,day and day slot
+  exerciseCard.attr("id",exerciseId); //will hold the exercise name,day and day slot
   
   //Card image/GIF
   exerciseCard.append("<img>");
@@ -159,12 +184,25 @@ var createExerciseCard = function(exerciseId)
   }
 }
 
-//createExerciseCard();
+//Holds all exercises
+var exerciseList = {
+  arms: ['bicepCurls','','','',''],
+  legs: ['','','','',''],
+  abs: [absCrunches,''],
+  chest: ['','','','',''],
+  back: ['','','','',''],
+  shoulders: ['','','','',''],
+  calves: ['','','','','']
+}
+
+//exerciseList.abs[0](); // this syntax ->calls abs crunches
+
 //event listenser to assign set and rep button values
 $(".exercise-card").on("click","a",function()
 {
+  event.preventDefault();
   var text = $(this).text().trim();
 
-  console.log($(this).parent().parent().parent().find(".selected-value").text(text));
+  $(this).parent().parent().parent().find(".selected-value").text(text);
 });
 /////////////////////////////////////////////////////////////////////////////////////////////////
