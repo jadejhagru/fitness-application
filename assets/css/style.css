@@ -101,4 +101,8 @@ header {
     top: 0px; 
     left: 0px; 
     will-change: transform;
-    }
+}
+
+.exercise-card{
+    width: 18rem;
+}
