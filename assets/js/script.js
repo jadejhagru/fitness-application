@@ -43,7 +43,7 @@ var saveProfile = function(userProfile) {
 // }
 
 fetch(
-  'https://wger.de/api/v2/exercise/?format=json'
+  'https://wger.de/api/v2/exercise/?format=json&limit=100'
 )
   .then(function(response) {
     return response.json();
@@ -51,8 +51,8 @@ fetch(
   .then(function(response) {
     console.log(response);
 
+   // $(".exercise-description").attr('src');
   // Create a variable that will select the <div> where the GIF will be displayed
-  var responseContainerEl = document.querySelector('#response-container');
 
   //   // Empty out the <div> before we append a GIF to it
   //   responseContainerEl.innerHTML = '';
@@ -63,5 +63,16 @@ fetch(
   //   // Append 'gifImg' to the <div>
   //   responseContainerEl.appendChild(gifImg);
   });
+  fetch(
+    'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
+  )
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(response) {
+      console.log(response);
+  
+     $(".exercise-graphic").attr('src',response.data.images.downsized_large.url);
+    });
 
 /////////////////////////////////////////////////////////////////////////////////////////////////

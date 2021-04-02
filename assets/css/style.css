@@ -8,6 +8,10 @@
     margin: auto;
 }
 
+body{
+    background-color: black;
+}
+
 header {
     background-image: url("../images/background.jfif");
     height: 100vh;
