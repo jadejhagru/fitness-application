@@ -94,3 +94,11 @@ header {
     color: black;
     transition: 0.5s;
 }
+
+.exercise-set-rep{
+    position: absolute; 
+    transform: translate3d(0px, 31px, 0px);
+    top: 0px; 
+    left: 0px; 
+    will-change: transform;
+    }

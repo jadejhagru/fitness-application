@@ -29,17 +29,59 @@
 
         <!-- Exercise display-->
         <div class="card exercise-card" style="width: 18rem;">
-            <img src="..." class="card-img-top exercise-graphic" alt="...">
+            <img class="card-img-top exercise-graphic">
             <div class="card-body">
-              <h5 class="card-title exercise-name">Exercise Name</h5>
-              <p class="card-text exercise-description">description Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum numquam debitis id incidunt facere architecto cupiditate perspiciatis voluptas hic, adipisci ad eveniet atque amet modi. Voluptatibus facere sapiente nam cum?</p>
+              <h5 class="card-title exercise-name"></h5>
+              <div class="card-text exercise-description"></div>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item exercise-group">exercise group/body part</li>
-              <li class="list-group-item exercise-sets">set <section>rep/seconds</section> </li>
-              <li class="list-group-item exercise-equipment">equipment weight/body weight</li>
+              <li class="list-group-item exercise-group"></li>
+              <li class="list-group-item helpful-tip">Remember to rest between every set for 40 secs to 1 min</li>
             </ul>
+
+        <div class="btn-group">
+            <div class="btn-group" role="group">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                    Set
+                </button>
+                <div class="dropdown-menu exercise-set-rep dropdown-menu-right" x-placement="bottom-start">
+                    <a class="dropdown-item" href="#">3</a>
+                    <a class="dropdown-item" href="#">4</a>
+                </div>
+            </div>
+
+            <div class="btn-group" role="group">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Rep (Count)
+                </button>
+                <div class="dropdown-menu exercise-set-rep dropdown-menu-right" x-placement="bottom-start">
+                    <a class="dropdown-item" href="#">5-8</a>
+                    <a class="dropdown-item" href="#">8-10</a>
+                    <a class="dropdown-item" href="#">10-12</a>
+                    <a class="dropdown-item" href="#">12-15</a>
+                </div>
+            </div>
+            
+            <div class="btn-group" role="group">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Rep (Seconds)
+                </button>
+                <div class="dropdown-menu exercise-set-rep dropdown-menu-right" x-placement="bottom-start">
+                    <a class="dropdown-item" href="#">15</a>
+                    <a class="dropdown-item" href="#">30</a>
+                    <a class="dropdown-item" href="#">60</a>
+                </div>
+            </div>
         </div>
+
+        </div>
+
+        <!-- remove the br tags if necessary -->
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
 
     <!--Modal-->
     <div class="modal" id="profile-modal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="false">
@@ -70,6 +112,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/script.js"></script>
     
 </body>

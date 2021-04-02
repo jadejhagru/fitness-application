@@ -42,37 +42,28 @@ var saveProfile = function(userProfile) {
 //     }
 // }
 
+//Abs-Crunches
 fetch(
-  'https://wger.de/api/v2/exercise/?format=json&limit=100'
+  'https://wger.de/api/v2/exercise/?format=json&limit=1000'
+)
+.then(function(response) {
+  return response.json();
+})
+.then(function(response) {
+  $(".exercise-name").text(response.results[82].name);
+  $(".exercise-graphic").attr('alt',response.results[82].name);
+  $(".exercise-description").append(response.results[82].description);
+  $(".exercise-group").text('Musclue group: Abs');
+});
+
+fetch(
+  'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
 )
   .then(function(response) {
     return response.json();
   })
   .then(function(response) {
-    console.log(response);
-
-   // $(".exercise-description").attr('src');
-  // Create a variable that will select the <div> where the GIF will be displayed
-
-  //   // Empty out the <div> before we append a GIF to it
-  //   responseContainerEl.innerHTML = '';
-
-  //   var gifImg = document.createElement('img');
-  //   gifImg.setAttribute('src', response.data[0].images.fixed_height.url);
-
-  //   // Append 'gifImg' to the <div>
-  //   responseContainerEl.appendChild(gifImg);
-  });
-  fetch(
-    'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
-  )
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(response) {
-      console.log(response);
-  
-     $(".exercise-graphic").attr('src',response.data.images.downsized_large.url);
-    });
+    $(".exercise-graphic").attr('src',response.data.images.downsized_large.url);
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
