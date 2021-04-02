@@ -70,7 +70,7 @@ fetch(
 
 
 //Creates exercise card object - needs be to scoped to the exercise option selection loop
-var createExerciseCard = function()
+var createExerciseCard = function(exerciseId)
 {
   //is the base class for the exercise cards to append to the body
   $(".exercise-card-section").append("<div>");
@@ -78,6 +78,7 @@ var createExerciseCard = function()
   //actual card code starts here - must have a pre-existing div
   var exerciseCard = $(".exercise-card-section div");
   exerciseCard.addClass("card exercise-card");
+  exerciseCard.attr("id","exercirseId"); //will hold the exercise name,day and day slot
   
   //Card image/GIF
   exerciseCard.append("<img>");
@@ -104,14 +105,17 @@ var createExerciseCard = function()
   for (var i = 0; i < 3; i++)
   {
     //need to add an id to the button groups
-    exerciseCard.append("<div class=\"btn-group\""+buttonName[i]+">")
-    exerciseCard.find(".btn-group").append("<div class=\"btn-group "+buttonName[i]+"-button role=\"group\">");
-    exerciseCard.find(".btn-group ."+buttonName[i]+"-button").append("<button>");
-    exerciseCard.find(".btn-group .btn-group button").addClass("btn btn-secondary btn-sm dropdown-toggle");
-    exerciseCard.find(".btn-group .btn-group button").attr("type","button");
-    exerciseCard.find(".btn-group .btn-group button").attr("data-toggle","dropdown");
-    exerciseCard.find(".btn-group .btn-group button").attr("aria-haspopup","true");
-    exerciseCard.find(".btn-group .btn-group button").attr("aria-expanded","false");
+    exerciseCard.append("<div class=\"btn-group\" id=\""+buttonName[i]+"-button\">");
+
+    exerciseCard.find("#"+buttonName[i]+"-button.btn-group").append("<div class=\"btn-group\" role=\"group\" id=\""+buttonName[i]+"-button\">");
+
+    exerciseCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").append("<button id=\""+buttonName[i]+"-button\">");
+
+    exerciseCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").addClass("btn btn-secondary btn-sm dropdown-toggle");
+    exerciseCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").attr("type","button");
+    exerciseCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").attr("data-toggle","dropdown");
+    exerciseCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").attr("aria-haspopup","true");
+    exerciseCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").attr("aria-expanded","false");
 
     var buttonText;
     if (i === 0)
@@ -126,9 +130,9 @@ var createExerciseCard = function()
     { 
       buttonText="Rep Time";
     }
-    exerciseCard.find(".btn-group .btn-group button").text(buttonText);
+    exerciseCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").text(buttonText);
   }
 }
 
-//createExerciseCard();
+createExerciseCard();
 /////////////////////////////////////////////////////////////////////////////////////////////////
