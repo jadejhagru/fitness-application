@@ -68,6 +68,7 @@ header {
     transform: translateY(-50%);
     text-align: center;
     color: white;
+    text-shadow: rgb(85, 88, 94) 2px 2px 30px;
 }
 
 .welcome-text h1{
