@@ -26,6 +26,7 @@ $("#submit-button").click(function() {
     saveProfile(userProfile);
 });
 
+//save the user's profile to localstorage
 var saveProfile = function(userProfile) {
     localStorage.setItem("userProfile", JSON.stringify(userProfile));
 };
