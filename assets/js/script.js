@@ -1,4 +1,4 @@
-//globally clal userProfile as an object with empty attributes
+//globally call userProfile as an object with empty attributes
 var userProfile = {
     Age: "", 
     Weight: "",
@@ -30,3 +30,6 @@ $("#submit-button").click(function() {
 var saveProfile = function(userProfile) {
     localStorage.setItem("userProfile", JSON.stringify(userProfile));
 };
+
+//click the plus icon
+    //pop up modal with 

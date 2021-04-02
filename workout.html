@@ -11,170 +11,171 @@
 </head>
 
 <body>
-    <container class="container">
-        <div class="row">
-            <div class="card text-white bg-dark">
-                <div class="card-header ">BMI</div>
+    <div class="row">
+        <div class="card text-white bg-dark">
+            <div class="card-header ">BMI</div>
+            <div class="card-body">
+                <p class="card-text">Your current BMI: </p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="card-group">
+            <div class="card text-white bg-dark" id="day">
+                <div class="card-header ">Sunday</div>
                 <div class="card-body">
-                    <p class="card-text">Your current BMI: </p>
-                </div>
-            </div>
-        </div>
-    </container>
-    <container>
-        <div class="row">
-            <div class="card-group">
-                <div class="card text-white bg-dark" id="day">
-                    <div class="card-header ">Sunday</div>
-                    <div class="card-body">
-                        <span style = "font-size: 3em; color: white;">
-                            <i class="fas fa-plus-circle color"></i>
-                        </span>
-                        <p class="card-text">
-                            <div class="card exercise-card text-white bg-secondary">
-                                <img class="card-img-top exercise-graphic">
-                                <div class="card-body">
-                                  <h5 class="card-title exercise-name"></h5>
-                                  <div class="card-text exercise-description"></div>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                  <li class="list-group-item exercise-group"></li>
-                                  <li class="list-group-item helpful-tip">Remember to rest between every set for 40 secs to 1 min</li>
-                                </ul>
-                    
-                                <div class="btn-group">
-                                    <!-- <div class="btn-group" role="group"> -->
-                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                            Set
-                                        </button>
-                                        <div class="dropdown-menu exercise-set-rep dropdown-menu-right" x-placement="bottom-start">
-                                            <a class="dropdown-item" href="#">3</a>
-                                            <a class="dropdown-item" href="#">4</a>
-                                        <!-- </div> -->
-                                    </div>
-                    
-                                    <!-- <div class="btn-group" role="group"> -->
-                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Rep (Count)
-                                        </button>
-                                        <div class="dropdown-menu exercise-set-rep dropdown-menu-right" x-placement="bottom-start">
-                                            <a class="dropdown-item" href="#">5-8</a>
-                                            <a class="dropdown-item" href="#">8-10</a>
-                                            <a class="dropdown-item" href="#">10-12</a>
-                                            <a class="dropdown-item" href="#">12-15</a>
-                                        </div>
-                                    <!-- </div> -->
-                                    
-                                    <!-- <div class="btn-group" role="group"> -->
-                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Rep (Seconds)
-                                        </button>
-                                        <div class="dropdown-menu exercise-set-rep dropdown-menu-right" x-placement="bottom-start">
-                                            <a class="dropdown-item" href="#">15</a>
-                                            <a class="dropdown-item" href="#">30</a>
-                                            <a class="dropdown-item" href="#">60</a>
-                                        </div>
-                                    <!-- </div> -->
-                                </div>
+                    <span style="font-size: 3em; color: white;">
+                        <i class="fas fa-plus-circle color"></i>
+                    </span>
+                    <p class="card-text">
+                    <div class="card exercise-card text-white bg-secondary">
+                        <img class="card-img-top exercise-graphic">
+                        <div class="card-body">
+                            <h5 class="card-title exercise-name"></h5>
+                            <div class="card-text exercise-description"></div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item exercise-group"></li>
+                            <li class="list-group-item helpful-tip">Remember to rest between every set for 40 secs to 1
+                                min</li>
+                        </ul>
+
+                        <div class="btn-group">
+                            <!-- <div class="btn-group" role="group"> -->
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Set
+                            </button>
+                            <div class="dropdown-menu exercise-set-rep dropdown-menu-right" x-placement="bottom-start">
+                                <a class="dropdown-item" href="#">3</a>
+                                <a class="dropdown-item" href="#">4</a>
+                                <!-- </div> -->
                             </div>
-                        </p>
+
+                            <!-- <div class="btn-group" role="group"> -->
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Rep (Count)
+                            </button>
+                            <div class="dropdown-menu exercise-set-rep dropdown-menu-right" x-placement="bottom-start">
+                                <a class="dropdown-item" href="#">5-8</a>
+                                <a class="dropdown-item" href="#">8-10</a>
+                                <a class="dropdown-item" href="#">10-12</a>
+                                <a class="dropdown-item" href="#">12-15</a>
+                            </div>
+                            <!-- </div> -->
+
+                            <!-- <div class="btn-group" role="group"> -->
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Rep (Seconds)
+                            </button>
+                            <div class="dropdown-menu exercise-set-rep dropdown-menu-right" x-placement="bottom-start">
+                                <a class="dropdown-item" href="#">15</a>
+                                <a class="dropdown-item" href="#">30</a>
+                                <a class="dropdown-item" href="#">60</a>
+                            </div>
+                            <!-- </div> -->
+                        </div>
                     </div>
+                    </p>
                 </div>
-                <div class="card text-white bg-dark" id="day">
-                    <div class="card-header ">Monday</div>
-                    <div class="card-body">
-                        <span style = "font-size: 3em; color: white;">
-                            <i class="fas fa-plus-circle color"></i>
+            </div>
+            <div class="card text-white bg-dark" id="day">
+                <div class="card-header ">Monday</div>
+                <div class="card-body">
+                    <span style="font-size: 3em; color: white;">
+                        <i class="fas fa-plus-circle color"></i>
+                    </span>
+                    <p class="card-text">
+                        Rest
+                        <span stlye="color: white;">
+                            <i class="fas fa-bed"></i>
                         </span>
-                        <p class="card-text">
-                            Rest
-                            <span stlye="color: white;">
-                                <i class="fas fa-bed" ></i>
-                            </span>
-                        </p>
-                    </div>
+                    </p>
                 </div>
-                <div class="card text-white bg-dark" id="day">
-                    <div class="card-header">Tuesday</div>
-                    <div class="card-body">
-                        <span style = "font-size: 3em; color: white;">
-                            <i class="fas fa-plus-circle color"></i>
+            </div>
+            <div class="card text-white bg-dark" id="day">
+                <div class="card-header">Tuesday</div>
+                <div class="card-body">
+                    <span style="font-size: 3em; color: white;">
+                        <i class="fas fa-plus-circle color"></i>
+                    </span>
+                    <p class="card-text">
+                        Rest
+                        <span stlye="color: white;">
+                            <i class="fas fa-bed"></i>
                         </span>
-                        <p class="card-text">
-                            Rest
-                            <span stlye="color: white;">
-                                <i class="fas fa-bed" ></i>
-                            </span>
-                        </p>
-                    </div>
+                    </p>
                 </div>
-                <div class="card text-white bg-dark" id="day">
-                    <div class="card-header">Wednesday</div>
-                    <div class="card-body">
-                        <span style = "font-size: 3em; color: white;">
-                            <i class="fas fa-plus-circle color"></i>
+            </div>
+            <div class="card text-white bg-dark" id="day">
+                <div class="card-header">Wednesday</div>
+                <div class="card-body">
+                    <span style="font-size: 3em; color: white;">
+                        <i class="fas fa-plus-circle color"></i>
+                    </span>
+                    <p class="card-text">
+                        Rest
+                        <span stlye="color: white;">
+                            <i class="fas fa-bed"></i>
                         </span>
-                        <p class="card-text">
-                            Rest
-                            <span stlye="color: white;">
-                                <i class="fas fa-bed" ></i>
-                            </span>
-                        </p>
-                    </div>
+                    </p>
                 </div>
-                <div class="card text-white bg-dark" id="day">
-                    <div class="card-header">Thursday</div>
-                    <div class="card-body">
-                        <span style = "font-size: 3em; color: white;">
-                            <i class="fas fa-plus-circle color"></i>
+            </div>
+            <div class="card text-white bg-dark" id="day">
+                <div class="card-header">Thursday</div>
+                <div class="card-body">
+                    <span style="font-size: 3em; color: white;">
+                        <i class="fas fa-plus-circle color"></i>
+                    </span>
+                    <p class="card-text">
+                        Rest
+                        <span stlye="color: white;">
+                            <i class="fas fa-bed"></i>
                         </span>
-                        <p class="card-text">
-                            Rest
-                            <span stlye="color: white;">
-                                <i class="fas fa-bed" ></i>
-                            </span>
-                        </p>
-                    </div>
+                    </p>
                 </div>
-                <div class="card text-white bg-dark" id="day">
-                    <div class="card-header ">Friday</div>
-                    <div class="card-body">
-                        <span style = "font-size: 3em; color: white;">
-                            <i class="fas fa-plus-circle color"></i>
+            </div>
+            <div class="card text-white bg-dark" id="day">
+                <div class="card-header ">Friday</div>
+                <div class="card-body">
+                    <span style="font-size: 3em; color: white;">
+                        <i class="fas fa-plus-circle color"></i>
+                    </span>
+                    <p class="card-text">
+                        Rest
+                        <span stlye="color: white;">
+                            <i class="fas fa-bed"></i>
                         </span>
-                        <p class="card-text">
-                            Rest
-                            <span stlye="color: white;">
-                                <i class="fas fa-bed" ></i>
-                            </span>
-                        </p>
-                    </div>
+                    </p>
                 </div>
-                <div class="card text-white bg-dark" id="day">
-                    <div class="card-header">Saturday</div>
-                    <div class="card-body">
-                        <span style = "font-size: 3em; color: white;">
-                            <i class="fas fa-plus-circle color"></i>
+            </div>
+            <div class="card text-white bg-dark" id="day">
+                <div class="card-header">Saturday</div>
+                <div class="card-body">
+                    <span style="font-size: 3em; color: white;">
+                        <i class="fas fa-plus-circle color"></i>
+                    </span>
+                    <p class="card-text">
+                        Rest
+                        <span stlye="color: white;">
+                            <i class="fas fa-bed"></i>
                         </span>
-                        <p class="card-text">
-                            Rest
-                            <span stlye="color: white;">
-                                <i class="fas fa-bed" ></i>
-                            </span>
-                        </p>
-                    </div>
+                    </p>
                 </div>
             </div>
         </div>
-    </container>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/dab1fb85fe.js" crossorigin="anonymous"></script>
-    <script src="assets/js/script.js"></script>
+        </container>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/dab1fb85fe.js" crossorigin="anonymous"></script>
+        <script src="assets/js/script.js"></script>
 </body>
 
 </html>
