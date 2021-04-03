@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/master.css">
+    <title>OBSIDIFLEX</title>
+</head>
+<body>
+    <!--Navigation-->
+    <header>
+        <div class="wrapper">
+            <ul class="nav-area">
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">WORKOUTS</a></li>
+                <li><a href="bmi.html">BMI</a></li>
+                <li><a href="#">CALENDER</a></li>
+            </ul>
+        </div>
+    </header>
+        <div class="welcome-text">
+            <h1>WELCOME TO OBSIDIFLEX</h1>
+            <p>One life. One body. One Chance.</p>
+        <div>
+            <button type="button" id="profile-button" data-toggle="modal" data-target="#buildProfile">BUILD YOUR PROFILE</button>
+        </div>
+        </div>
+
+    <!--Modal-->
+    <div class="modal" id="profile-modal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Profile Builder</h5>
+                    <button type="modal-close" class="close-btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mx-sm-3 mb-2">
+                        <label for="age">Age:</label>
+                        <input type="number" class="form-control" id="age" name="age" placeholder="Age">
+                        <label for="weight" min="0">Weight:</label>
+                        <input type="number" class="form-control" id="weight" placeholder="kg">
+                        <label for="height">Height:</label>
+                        <input type="number" min="0" max="8" class="form-control" id="height" placeholder="cm">
+                    </div>
+                    <button type="button" id="submit-button">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+  <script src="assets/js/script.js"></script>
+    
+</body>
+</html>
