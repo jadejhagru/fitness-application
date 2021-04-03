@@ -31,6 +31,39 @@ var saveProfile = function(userProfile) {
     localStorage.setItem("userProfile", JSON.stringify(userProfile));
 };
 
+//add exercise
+$("span").click(function() {
+  $("#exercise-modal").show();
+  getExercises();
+});
+
+$("button").click(function() {
+  $("#exercise-modal").hide();
+});
+
+//get the exercise categories
+var getExercises = function () {
+  var apiUrl = "https://wger.de/api/v2/exercisecategory/?format=json&limit=1000"
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        showExercises(data);
+      })
+    }
+  });
+};
+
+//show exercise categories on the page
+var showExercises = function (exercisecategory) {
+  debugger;
+  for (i = 10; i < exercisecategory.length; i++) {
+    var exerciseEl = document.createElement("h4");
+    exerciseEl.textContent = exercisecategory[i].name;
+    $("#category").append(exerciseEl);
+  }
+
+};
+
 ///ANDRE'S STUFF - FEEL FREE TO COMMENT OUT - SHOULD NOT IMPACT ANYTHING ///////////////////////////////
 
 //using this to check the api list of exercises in the console log
@@ -54,7 +87,7 @@ var absCrunches = function (dayRowId,exerciseName) { fetch(
   $(".exercise-name."+exerciseName+"").text(response.results[82].name);
   $(".exercise-graphic."+exerciseName+"").attr('alt',response.results[82].name);
   $(".exercise-description."+exerciseName+"").append(response.results[82].description);
-  $(".exercise-group."+exerciseName+"").text('Musclue group: Abs');
+  $(".exercise-group."+exerciseName+"").text('Muscle group: Abs');
 });
 
 fetch(
