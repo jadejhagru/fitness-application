@@ -31,14 +31,16 @@ var saveProfile = function(userProfile) {
     localStorage.setItem("userProfile", JSON.stringify(userProfile));
 };
 
+$(".close-btn").click(function() {
+  $("#exercise-modal").hide();
+  $("#category").empty();
+});
+
 //add exercise
 $("span").click(function() {
   $("#exercise-modal").show();
   getExercises();
-});
-
-$("button").click(function() {
-  $("#exercise-modal").hide();
+  $("#category").empty();
 });
 
 //get the exercise categories
@@ -47,32 +49,58 @@ var getExercises = function () {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        showExercises(data);
+        showCategories(data.results);
       })
     }
   });
 };
 
 //show exercise categories on the page
-var showExercises = function (exercisecategory) {
-  debugger;
-  for (i = 10; i < exercisecategory.length; i++) {
-    var exerciseEl = document.createElement("h4");
-    exerciseEl.textContent = exercisecategory[i].name;
-    $("#category").append(exerciseEl);
+var showCategories = function (exercisecategory) {
+  for (i = 0; i < exercisecategory.length; i++) {
+    var categoryEl = document.createElement("button");
+    categoryEl.classList.add("category-btn");
+    categoryEl.textContent = exercisecategory[i].name;
+    categoryEl.setAttribute("id", exercisecategory[i].id);
+    $("#category").append(categoryEl);
   }
-
+  $(".category-btn").click(function() {
+    showExercises($(this)[0].attributes.id.value);
+  })
 };
+
+var showExercises = function(category) {
+  var apiUrl = "https://wger.de/api/v2/exercise/?format=json&limit=1000" + "&category=" + category + "&equipment=7";
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        $("#category").empty();
+        for (i = 0; i < data.results.length; i++) {
+          var exerciseEl = document.createElement("button");
+          exerciseEl.classList.add("exercise-btn");
+          exerciseEl.textContent = data.results[i].name;
+          exerciseEl.setAttribute("id", data.results[i].id);
+          $("#category").append(exerciseEl);
+        }
+        $(".exercise-btn").click(function () {
+          $("#category").empty();
+        });
+      })
+    }
+  });
+};
+
+
 
 ///ANDRE'S STUFF - FEEL FREE TO COMMENT OUT - SHOULD NOT IMPACT ANYTHING ///////////////////////////////
 
 //using this to check the api list of exercises in the console log
-fetch(
-  'https://wger.de/api/v2/exercise/?format=json&limit=1000'
-)
-.then(function(response) {
-  return response.json();
-}).then(function(response) {console.log(response);})
+// fetch(
+//   'https://wger.de/api/v2/exercise/?format=json&limit=1000'
+// )
+// .then(function(response) {
+//   return response.json();
+// }).then(function(response) {console.log(response);})
 
 
 //Abs-Crunches
