@@ -33,6 +33,7 @@ var saveProfile = function(userProfile) {
 
 ///ANDRE'S STUFF - FEEL FREE TO COMMENT OUT - SHOULD NOT IMPACT ANYTHING ///////////////////////////////
 
+//using this to check the api list of exercises in the console log
 fetch(
   'https://wger.de/api/v2/exercise/?format=json&limit=1000'
 )
@@ -40,18 +41,20 @@ fetch(
   return response.json();
 }).then(function(response) {console.log(response);})
 
+
 //Abs-Crunches
-var absCrunches = function () { fetch(
+var absCrunches = function (dayRowId,exerciseName) { fetch(
   'https://wger.de/api/v2/exercise/?format=json&limit=1000'
 )
 .then(function(response) {
   return response.json();
 })
 .then(function(response) {
-  $(".exercise-name").text(response.results[82].name);
-  $(".exercise-graphic").attr('alt',response.results[82].name);
-  $(".exercise-description").append(response.results[82].description);
-  $(".exercise-group").text('Musclue group: Abs');
+
+  $(".exercise-name."+exerciseName+"").text(response.results[82].name);
+  $(".exercise-graphic."+exerciseName+"").attr('alt',response.results[82].name);
+  $(".exercise-description."+exerciseName+"").append(response.results[82].description);
+  $(".exercise-group."+exerciseName+"").text('Musclue group: Abs');
 });
 
 fetch(
@@ -61,65 +64,67 @@ fetch(
     return response.json();
   })
   .then(function(response) {
-    $(".exercise-graphic").attr('src',response.data.images.downsized_large.url);
+
+    $(".exercise-graphic."+exerciseName+"").attr('src',response.data.images.downsized_large.url);
+
 })
-createExerciseCard("abs-crunches");
+createExerciseCard("crunches",1);
 };
 //
 
-var absCrunches = function () { fetch(
+//Bicep-Curls
+var bicepCurls = function (dayRowId,exerciseName) { fetch(
   'https://wger.de/api/v2/exercise/?format=json&limit=1000'
 )
 .then(function(response) {
   return response.json();
 })
 .then(function(response) {
-  $(".exercise-name").text(response.results[82].name);
-  $(".exercise-graphic").attr('alt',response.results[82].name);
-  $(".exercise-description").append(response.results[82].description);
-  $(".exercise-group").text('Musclue group: Abs');
+  $(".exercise-name."+exerciseName+"").text(response.results[45].name);
+  $(".exercise-graphic."+exerciseName+"").attr('alt',response.results[45].name);
+  $(".exercise-description."+exerciseName+"").append(response.results[45].description);
+  $(".exercise-group."+exerciseName+"").text('Musclue group: Arms');
 });
 
 fetch(
-  'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
+  'https://api.giphy.com/v1/gifs/HMzadBUQG3y53pYmOK?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
 )
   .then(function(response) {
     return response.json();
   })
   .then(function(response) {
-    $(".exercise-graphic").attr('src',response.data.images.downsized_large.url);
+    $(".exercise-graphic."+exerciseName+"").attr('src',response.data.images.downsized_large.url);
 })
-createExerciseCard("abs-crunches");
+createExerciseCard("bicep-curls",2);
 };
 //
 
 
 //Creates exercise card object - needs be to scoped to the exercise option selection loop
-var createExerciseCard = function(exerciseId)
+var createExerciseCard = function(exerciseId,num) //num is the section it goes to in the day column
 {
-  //is the base class for the exercise cards to append to the body
-  $(".exercise-card-section").append("<div>");
+  //is the base class for the exercise cards to append to the body and the class will point to the day box.
+  $(".exercise-card-section"+num).append("<div>");
 
   //actual card code starts here - must have a pre-existing div
-  var exerciseCard = $(".exercise-card-section div"); //will be the day box
-  exerciseCard.addClass("card exercise-card");
-  exerciseCard.attr("id",exerciseId); //will hold the exercise name,day and day slot
+  var exerciseCard = $(".exercise-card-section"+num+" div");
+  exerciseCard.addClass("card exercise-card "+exerciseId+"").attr("id",exerciseId);
   
   //Card image/GIF
   exerciseCard.append("<img>");
-  exerciseCard.find("img").addClass("card-img-top exercise-graphic");
+  exerciseCard.find("img").addClass("card-img-top exercise-graphic "+exerciseId+"");
 
   //Card name
   exerciseCard.append("<div class=\"card-body\">");
   exerciseCard.find(".card-body").append("<h5>");
-  exerciseCard.find(".card-body h5").addClass("card-title exercise-name");
+  exerciseCard.find(".card-body h5").addClass("card-title exercise-name "+exerciseId+"");
 
   //Card description
-  exerciseCard.find(".card-body").append("<div class=\"card-text exercise-description\">");
+  exerciseCard.find(".card-body").append("<div class=\"card-text exercise-description "+exerciseId+"\">");
 
   //Card muscle group
   exerciseCard.append("<ul class=\"list-group list-group-flush\">");
-  exerciseCard.find(".list-group").append("<li class=\"list-group-item exercise-group\">");
+  exerciseCard.find(".list-group").append("<li class=\"list-group-item exercise-group "+exerciseId+"\">");
 
   //Card rest tip
   exerciseCard.find(".list-group").append("<li class=\"list-group-item helpful-tip\">")
@@ -186,16 +191,21 @@ var createExerciseCard = function(exerciseId)
 
 //Holds all exercises
 var exerciseList = {
-  arms: ['bicepCurls','','','',''],
-  legs: ['','','','',''],
-  abs: [absCrunches,''],
-  chest: ['','','','',''],
-  back: ['','','','',''],
-  shoulders: ['','','','',''],
-  calves: ['','','','','']
+  arms: [bicepCurls,'hammerCurls','tricepDip','tricepExtension'],
+  shoulders: ['lateralRaises','shoulderPressDumbbells','lateralFrontRaises','shoulderShrug'],
+  
+  chest: ['benchPress','inclineDumbbellPress','pushups'],
+  abs: [absCrunches,'legRaises','plank','sideCrunch'],
+  back: ['bentoverDumbbellRows','pullUps','hipRaiseLying','longPulleyRow'],
+  
+  legs: ['romanianDeadlift','squats','dumbbellLungesStanding'],
+  calves: ['calfRaises','legCurl','legExtenstion']
 }
 
-//exerciseList.abs[0](); // this syntax ->calls abs crunches
+
+//Uncomment this to run the cards
+//exerciseList.abs[0](1,"bicep-curls"); // this syntax ->calls abs crunches //the number is the section it goes to in the day column
+//exerciseList.arms[0](2,"crunches");
 
 //event listenser to assign set and rep button values
 $(".exercise-card").on("click","a",function()
