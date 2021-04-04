@@ -109,7 +109,9 @@ var showExercises = function(category) {
             $(".exercise-description."+exerciseName+"").append(response.results[selectedExerciseId].description);
             $(".exercise-group."+exerciseName+"").text('Muscle group: Abs');
           });
-          
+
+          //giphy fetch
+          //
           // fetch(
           //   'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
           // )
@@ -127,31 +129,31 @@ var showExercises = function(category) {
           //Creates exercise card object - needs be to scoped to the exercise option selection loop
           var createExerciseCard = function(exerciseId,dayId) //dayId is the section it goes to in the day column
           {
-            debugger;
-          
-            console.log("#"+dayId+".card-body"+" div");
-            //actual card code starts here - must have a pre-existing div
-            var exerciseCard = $("#"+dayId+".card-body"+" div"); ///fix this
+            
+            //actual card code starts here 
+            $("#"+dayId+".card-body").append("<div class=\"card-body newdiv\" id="+dayId+"\"></div>");
+            var exerciseCard = $("#"+dayId+".card-body").find(".newdiv"); 
+
             exerciseCard.addClass("card exercise-card "+exerciseId+"").attr("id",exerciseId);
             
             //Card image/GIF
             exerciseCard.append("<img>");
-            exerciseCard.find("img").addClass("card-img-top exercise-graphic "+exerciseId+"");
+            exerciseCard.find("img").addClass("card-img-top exercise-graphic "+exerciseId+" "+dayId+"");
           
             //Card name
             exerciseCard.append("<div class=\"card-body\">");
             exerciseCard.find(".card-body").append("<h5>");
-            exerciseCard.find(".card-body h5").addClass("card-title exercise-name "+exerciseId+"");
+            exerciseCard.find(".card-body h5").addClass("card-title exercise-name "+exerciseId+" "+dayId+"");
           
             //Card description
-            exerciseCard.find(".card-body").append("<div class=\"card-text exercise-description "+exerciseId+"\">");
+            exerciseCard.find(".card-body").append("<div class=\"card-text exercise-description "+exerciseId+" "+dayId+"\">");
           
             //Card muscle group
             exerciseCard.append("<ul class=\"list-group list-group-flush\">");
-            exerciseCard.find(".list-group").append("<li class=\"list-group-item exercise-group "+exerciseId+"\">");
+            exerciseCard.find(".list-group").append("<li class=\"list-group-item exercise-group "+exerciseId+" "+dayId+"\">");
           
             //Card rest tip
-            exerciseCard.find(".list-group").append("<li class=\"list-group-item helpful-tip\">")
+            exerciseCard.find(".list-group").append("<li class=\"list-group-item helpful-tip "+exerciseId+" "+dayId+"\">")
             exerciseCard.find(".list-group .helpful-tip").text("Remember to rest between every set for 40 secs to 1 min");
           
             //Creates set,rep count and rep time selection button---
@@ -222,9 +224,16 @@ var showExercises = function(category) {
   });
 };
 
+//event listenser to assign set and rep button values
+$(".exercise-card").on("click","a",function()
+{
+  event.preventDefault();
+  var text = $(this).text().trim();
 
+  $(this).parent().parent().parent().find(".selected-value").text(text);
+});
 
-///ANDRE'S STUFF - FEEL FREE TO COMMENT OUT - SHOULD NOT IMPACT ANYTHING ///////////////////////////////
+//ANDRE'S OLD STUFF - Keep this commented
 
 //using this to check the api list of exercises in the console log
 // fetch(
@@ -234,91 +243,81 @@ var showExercises = function(category) {
 //   return response.json();
 // }).then(function(response) {console.log(response);})
 
-
-
-
-//Old
-//Holds all exercises
-var exerciseList = {
-  arms: [bicepCurls,'hammerCurls','tricepDip','tricepExtension'],
-  shoulders: ['lateralRaises','shoulderPressDumbbells','lateralFrontRaises','shoulderShrug'],
+// //Old
+// //Holds all exercises
+// var exerciseList = {
+//   arms: [bicepCurls,'hammerCurls','tricepDip','tricepExtension'],
+//   shoulders: ['lateralRaises','shoulderPressDumbbells','lateralFrontRaises','shoulderShrug'],
   
-  chest: ['benchPress','inclineDumbbellPress','pushups'],
-  abs: [absCrunches,'legRaises','plank','sideCrunch'],
-  back: ['bentoverDumbbellRows','pullUps','hipRaiseLying','longPulleyRow'],
+//   chest: ['benchPress','inclineDumbbellPress','pushups'],
+//   abs: [absCrunches,'legRaises','plank','sideCrunch'],
+//   back: ['bentoverDumbbellRows','pullUps','hipRaiseLying','longPulleyRow'],
   
-  legs: ['romanianDeadlift','squats','dumbbellLungesStanding'],
-  calves: ['calfRaises','legCurl','legExtenstion']
-}
+//   legs: ['romanianDeadlift','squats','dumbbellLungesStanding'],
+//   calves: ['calfRaises','legCurl','legExtenstion']
+// }
 
-//Uncomment this to run the cards
-//exerciseList.abs[0](1,"bicep-curls"); // this syntax ->calls abs crunches //the dayIdber is the section it goes to in the day column
-//exerciseList.arms[0](2,"crunches");
+// //Uncomment this to run the cards
+// //exerciseList.abs[0](1,"bicep-curls"); // this syntax ->calls abs crunches //the dayIdber is the section it goes to in the day column
+// //exerciseList.arms[0](2,"crunches");
 
-//Abs-Crunches
-var absCrunches = function (dayRowId,exerciseName) { fetch(
-  'https://wger.de/api/v2/exercise/?format=json&limit=1000'
-)
-.then(function(response) {
-  return response.json();
-})
-.then(function(response) {
-  $(".exercise-name."+exerciseName+"").text(response.results[82].name);
-  $(".exercise-graphic."+exerciseName+"").attr('alt',response.results[82].name);
-  $(".exercise-description."+exerciseName+"").append(response.results[82].description);
-  $(".exercise-group."+exerciseName+"").text('Muscle group: Abs');
-});
-
-// fetch(
-//   'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
+// //Abs-Crunches
+// var absCrunches = function (dayRowId,exerciseName) { fetch(
+//   'https://wger.de/api/v2/exercise/?format=json&limit=1000'
 // )
-//   .then(function(response) {
-//     return response.json();
-//   })
-//   .then(function(response) {
-
-//     $(".exercise-graphic."+exerciseName+"").attr('src',response.data.images.downsized_large.url);
-
+// .then(function(response) {
+//   return response.json();
 // })
-createExerciseCard("crunches",1);
-};
+// .then(function(response) {
+//   $(".exercise-name."+exerciseName+"").text(response.results[82].name);
+//   $(".exercise-graphic."+exerciseName+"").attr('alt',response.results[82].name);
+//   $(".exercise-description."+exerciseName+"").append(response.results[82].description);
+//   $(".exercise-group."+exerciseName+"").text('Muscle group: Abs');
+// });
+
+// // fetch(
+// //   'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
+// // )
+// //   .then(function(response) {
+// //     return response.json();
+// //   })
+// //   .then(function(response) {
+
+// //     $(".exercise-graphic."+exerciseName+"").attr('src',response.data.images.downsized_large.url);
+
+// // })
+// createExerciseCard("crunches",1);
+// };
+// //
+
+// //Bicep-Curls
+// var bicepCurls = function (dayRowId,exerciseName) { fetch(
+//   'https://wger.de/api/v2/exercise/?format=json&limit=1000'
+// )
+// .then(function(response) {
+//   return response.json();
+// })
+// .then(function(response) {
+//   $(".exercise-name."+exerciseName+"").text(response.results[45].name);
+//   $(".exercise-graphic."+exerciseName+"").attr('alt',response.results[45].name);
+//   $(".exercise-description."+exerciseName+"").append(response.results[45].description);
+//   $(".exercise-group."+exerciseName+"").text('Musclue group: Arms');
+// });
+
+// // fetch(
+// //   'https://api.giphy.com/v1/gifs/HMzadBUQG3y53pYmOK?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
+// // )
+// //   .then(function(response) {
+// //     return response.json();
+// //   })
+// //   .then(function(response) {
+// //     $(".exercise-graphic."+exerciseName+"").attr('src',response.data.images.downsized_large.url);
+// // })
+// createExerciseCard("bicep-curls",2);
+// };
+// //
+
 //
 
-//Bicep-Curls
-var bicepCurls = function (dayRowId,exerciseName) { fetch(
-  'https://wger.de/api/v2/exercise/?format=json&limit=1000'
-)
-.then(function(response) {
-  return response.json();
-})
-.then(function(response) {
-  $(".exercise-name."+exerciseName+"").text(response.results[45].name);
-  $(".exercise-graphic."+exerciseName+"").attr('alt',response.results[45].name);
-  $(".exercise-description."+exerciseName+"").append(response.results[45].description);
-  $(".exercise-group."+exerciseName+"").text('Musclue group: Arms');
-});
 
-// fetch(
-//   'https://api.giphy.com/v1/gifs/HMzadBUQG3y53pYmOK?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
-// )
-//   .then(function(response) {
-//     return response.json();
-//   })
-//   .then(function(response) {
-//     $(".exercise-graphic."+exerciseName+"").attr('src',response.data.images.downsized_large.url);
-// })
-createExerciseCard("bicep-curls",2);
-};
-//
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-
-//event listenser to assign set and rep button values
-$(".exercise-card").on("click","a",function()
-{
-  event.preventDefault();
-  var text = $(this).text().trim();
-
-  $(this).parent().parent().parent().find(".selected-value").text(text);
-});
 
