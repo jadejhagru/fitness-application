@@ -1,6 +1,21 @@
+*{
+    margin: 0;
+    padding: 10px;
+}
+
 .wrapper {
     width: 1170px;
     margin: auto;
+}
+
+body{
+    background-color: black;
+    background-image: url("../images/background.jfif");
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    text-align: center;
 }
 
 header {
