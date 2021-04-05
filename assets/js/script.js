@@ -1,6 +1,5 @@
 //globally call userProfile as an object with empty attributes
 var userProfile = {
-    Age: "", 
     Weight: "",
     Height: ""
 };
@@ -23,10 +22,8 @@ $(".close-btn").click(function() {
 
 //send user stats to userProfile object
 $("#submit-button").click(function() {
-    var userAge = $("input[id='age'").val();
     var userWeight = $("input[id='weight'").val();
     var userHeight = $("input[id='height'").val();
-    userProfile.Age = userAge;
     userProfile.Weight = userWeight;
     userProfile.Height = userHeight;
     saveProfile(userProfile);
