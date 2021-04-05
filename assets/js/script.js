@@ -98,6 +98,7 @@ var showExercises = function(category) {
           createExerciseButton($(this).text());
 
           $("#category").empty();
+          $("#exercise-modal").hide();
         });
       })
     }
