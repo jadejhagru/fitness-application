@@ -109,71 +109,14 @@ var createExerciseButton = function (exerciseName) {
   console.log("exercise button: "+selectedDay);
 
   debugger;
-  var exerciseDayButtonCard = $("#"+dayVariable).append("<div></div>"); // id=\""+dayVariable+"\" class=\"card-body\"
+  $("#"+dayVariable).find(".card-text").empty(); //removes rest
+  var exerciseDayButtonCard = $("#"+dayVariable).append("<button>"+exerciseName+"</button>"); // id=\""+dayVariable+"\" class=\"card-body\"
 
-  exerciseDayButtonCard.addClass("card exercise-card "+exerciseName+"").attr("id",exerciseName);
+  //exerciseDayButtonCard.addClass("card exercise-card "+exerciseName+"").attr("id",exerciseName);
 
   //Card name
   exerciseDayButtonCard.find(".card-body").append("<p>");
-  exerciseDayButtonCard.find(".card-body p").addClass("card-title exercise-name "+exerciseName+" "+selectedDay+"");
-
-  //Creates set,rep count and rep time selection button---
-  var buttonName = ["set","rep-count","rep-group"];
-  for (var i = 0; i < 3; i++)
-  {
-    exerciseDayButtonCard.append("<div class=\"btn-group\" id=\""+buttonName[i]+"-button\">");
-
-    exerciseDayButtonCard.find("#"+buttonName[i]+"-button.btn-group").append("<div class=\"btn-group\" role=\"group\" id=\""+buttonName[i]+"-button\">");
-
-    exerciseDayButtonCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").append("<button id=\""+buttonName[i]+"-button\">");
-
-    exerciseDayButtonCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").addClass("btn btn-secondary btn-sm dropdown-toggle");
-    exerciseDayButtonCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").attr("type","button");
-    exerciseDayButtonCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").attr("data-toggle","dropdown");
-    exerciseDayButtonCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").attr("aria-haspopup","true");
-    exerciseDayButtonCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").attr("aria-expanded","false");
-
-    var buttonText; // button menu name
-
-    if (i === 0)
-    {
-      buttonText="Sets";
-    }
-    else if (i === 1)
-    {
-      buttonText="Rep Count";
-    }
-    else if(i === 2)
-    { 
-      buttonText="Rep Time";
-    }
-    exerciseDayButtonCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").find("button").text(buttonText);
-    exerciseDayButtonCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").append("<label class=selected-value></label>");
-
-    //creates menu options
-    exerciseDayButtonCard.find("#"+buttonName[i]+"-button.btn-group[role=group]").append("<div id=\""+buttonName[i]+"-options\">")
-      exerciseDayButtonCard.find("#"+buttonName[i]+"-options").addClass("dropdown-menu exercise-set-rep dropdown-menu-right").attr("x-placement","bottom-start");
-
-      if (i === 0) //Note: &#35 is to show the # character in the HTML href attribute
-      {
-        exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">3</a>");
-        exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">4</a>");
-      }
-      else if (i === 1)
-      {
-        exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">5-8</a>");
-        exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">8-10</a>");
-        exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">10-12</a>");
-        exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">12-15</a>");
-      }
-      else if(i === 2)
-      { 
-        exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">15</a>");
-        exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">30</a>");
-        exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">60</a>");
-      }
-
-  }
+  exerciseDayButtonCard.find(".card-body p").addClass("card-title "+exerciseName+" "+selectedDay+"");
 }
 
 //event listenser to assign set and rep button values
@@ -310,5 +253,60 @@ fetch(
 //   exerciseCard.find(".list-group").append("<li class=\"list-group-item helpful-tip "+exerciseId+" "+dayId+"\">")
 //   exerciseCard.find(".list-group .helpful-tip").text("Remember to rest between every set for 40 secs to 1 min");
 
+// //Creates set,rep count and rep time selection button---
+// var buttonName = ["set","rep-count","rep-group"];
+// for (var i = 0; i < 3; i++)
+// {
+//   exerciseDayButtonCard.append("<div class=\"btn-group \" id=\""+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"\">");
 
+//   exerciseDayButtonCard.find("#"+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"-button.btn-group").append("<div class=\"btn-group\" role=\"group\" id=\""+buttonName[i]+"-button\">");
+//   exerciseDayButtonCard.find("#"+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"-button.btn-group[role=group]").append("<button id=\""+buttonName[i]+"-button\">");
+
+//   exerciseDayButtonCard.find("#"+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"-button.btn-group[role=group]").find("button").addClass("btn btn-secondary btn-sm dropdown-toggle");
+//   exerciseDayButtonCard.find("#"+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"-button.btn-group[role=group]").find("button").attr("type","button");
+//   exerciseDayButtonCard.find("#"+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"-button.btn-group[role=group]").find("button").attr("data-toggle","dropdown");
+//   exerciseDayButtonCard.find("#"+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"-button.btn-group[role=group]").find("button").attr("aria-haspopup","true");
+//   exerciseDayButtonCard.find("#"+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"-button.btn-group[role=group]").find("button").attr("aria-expanded","false");
+
+//   var buttonText; // button menu name
+
+//   if (i === 0)
+//   {
+//     buttonText="Sets";
+//   }
+//   else if (i === 1)
+//   {
+//     buttonText="Rep Count";
+//   }
+//   else if(i === 2)
+//   { 
+//     buttonText="Rep Time";
+//   }
+//   exerciseDayButtonCard.find("#"+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"-button.btn-group[role=group]").find("button").text(buttonText);
+//   exerciseDayButtonCard.find("#"+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"-button.btn-group[role=group]").append("<label class=selected-value></label>");
+
+//   //creates menu options
+//   exerciseDayButtonCard.find("#"+buttonName[i]+"-button-"+exerciseName+"-"+selectedDay+"-button.btn-group[role=group]").append("<div id=\""+buttonName[i]+"-options\">")
+//     exerciseDayButtonCard.find("#"+buttonName[i]+"-options").addClass("dropdown-menu exercise-set-rep dropdown-menu-right").attr("x-placement","bottom-start");
+
+//     if (i === 0) //Note: &#35 is to show the # character in the HTML href attribute
+//     {
+//       exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">3</a>");
+//       exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">4</a>");
+//     }
+//     else if (i === 1)
+//     {
+//       exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">5-8</a>");
+//       exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">8-10</a>");
+//       exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">10-12</a>");
+//       exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">12-15</a>");
+//     }
+//     else if(i === 2)
+//     { 
+//       exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">15</a>");
+//       exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">30</a>");
+//       exerciseDayButtonCard.find("#"+buttonName[i]+"-options").append("<a class=\"dropdown-item\" href=\"&#35\">60</a>");
+//     }
+
+// }
 
