@@ -7,12 +7,12 @@ function BMI() {
         h =$('#h').val().trim();
         w = $('#w').val().trim();
     } else {
-    var bmi = w / (h / 100 * h / 100);
-    var bmio = (bmi.toFixed(2));
+        var bmi = w / (h / 100 * h / 100);
+        var bmio = (bmi.toFixed(2));
 
-    document.getElementById("result").innerHTML = "Your BMI is " + bmio;
-    bmiFinal = bmio;
-    saveBmi(bmiFinal);
+        document.getElementById("result").innerHTML = "Your BMI is " + bmio;
+        bmiFinal = bmio;
+        saveBmi(bmiFinal);
     }
 };
 
@@ -32,7 +32,6 @@ var loadProfile = function () {
 
 var saveBmi = function (bmiFinal) {
     localStorage.setItem("bmi", bmiFinal);
-    console.log(localStorage.bmi);
 };
 
 loadProfile();
