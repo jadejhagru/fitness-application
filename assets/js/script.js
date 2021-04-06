@@ -105,6 +105,18 @@ var showExercises = function(category) {
   })
 };
 
+//JADE STUFF
+
+$("#workout-btn").click(function() {
+  $("#workout-modal").show();
+});
+
+//dismiss main modal when closed
+$(".close-btn").click(function() {
+  $("#workout-modal").hide();
+});
+
+
 var createExerciseButton = function (exerciseName) {
   console.log(exerciseName+ " "+dayVariable);
   console.log("exercise button: "+selectedDay);
