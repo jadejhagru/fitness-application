@@ -156,7 +156,6 @@ var createExerciseButton = function (exerciseName) {
     }
 
      exerciseCard.find(buttonIdentifier+"-button.dropdown").find("button").text(buttonText);
-     exerciseCard.find(buttonIdentifier+"-button.dropdown").append("<label class=selected-value></label>");
 
     //creates menu options
       exerciseCard.find(buttonIdentifier+"-button.dropdown").append("<ul id=\""+buttonName[i]+"-"+exerciseName+"-options\"></ul>")
@@ -180,6 +179,8 @@ var createExerciseButton = function (exerciseName) {
         exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">30</a></i>");
         exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">60</a></li>");
       }
+
+      exerciseCard.find(buttonIdentifier+"-button.dropdown").append("<label class=selected-value></label>");
      } //end of for loop
 }
 
