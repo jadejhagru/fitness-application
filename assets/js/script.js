@@ -95,7 +95,7 @@ var showExercises = function(category) {
 
         $(".exercise-btn").click(function (event) {
 
-          createExerciseButton($(this).text());
+          createExerciseButton($(this).text(),this.getAttribute("id"));
           selectedExerciseId = this.getAttribute("id");
 
           $("#category").empty();
@@ -107,7 +107,7 @@ var showExercises = function(category) {
 };
 
 
-var createExerciseButton = function (exerciseName) {
+var createExerciseButton = function (exerciseName, exerciseId) {
 
     var exerciseCard = $("#"+dayVariable);
     
@@ -116,7 +116,7 @@ var createExerciseButton = function (exerciseName) {
     { return; }
 
     exerciseCard.find(".card-text").empty(); //removes rest
-    exerciseCard.append("<button type=\"button\" id=\"workout-btn\" class=\""+exerciseName+"\">"+exerciseName+" place set and rep buttons here"+"</button>");
+    exerciseCard.append("<button type=\"button\" id=\""+exerciseId+"\" class=\""+exerciseName+" workout-btn\">"+exerciseName+" place set and rep buttons here"+"</button>");
 
     exerciseName = exerciseName.replaceAll(" ","-");
     exerciseName = exerciseName.replaceAll(",","-");
@@ -180,21 +180,20 @@ var createExerciseButton = function (exerciseName) {
      } //end of for loop
 
      //JADE STUFF
-      $("#workout-btn").click(function () {
+      $(".workout-btn").click(function () {
       $("#workout-modal").show();
 
       //should only trigger one exercise button click
-        addExerciseCardData();
+        addExerciseCardData(exerciseId);
       //
     });
 
+      //dismiss main modal when closed
+      $(".close-btn").click(function() {
+      $("#workout-modal").hide();
+      $(".newdiv").remove();
+        });
 }
-
-//dismiss main modal when closed
-$(".close-btn").click(function() {
-  $("#workout-modal").hide();
-  $(".newdiv").remove();
-    });
 
 //event listenser to assign set and rep button values
 $(".exercise-card").on("click","a",function()
@@ -242,7 +241,7 @@ var createExerciseCard = function() //dayId is the section it goes to in the day
 }
 
 //appends data content to modal card for exercises
-var addExerciseCardData = function () { fetch(
+var addExerciseCardData = function (exerciseId) { fetch(
   'https://wger.de/api/v2/exercise/?format=json&limit=1000'
 )
 .then(function(response) {
@@ -255,7 +254,7 @@ var addExerciseCardData = function () { fetch(
   //checks if exercise id is listed in the API
   for (i = 0; i < data.results.length; i++ ){
 
-    if (selectedExerciseId == data.results[i].id){
+    if (exerciseId == data.results[i].id){
       $(".exercise-name").text(data.results[i].name);
       $(".exercise-graphic").attr('alt',data.results[i].name);
       $(".exercise-description").append(data.results[i].description);
