@@ -110,7 +110,18 @@ var showExercises = function(category) {
   })
 };
 
-//creates exercise button in the day card
+//JADE STUFF
+
+$("#workout-btn").click(function() {
+  $("#workout-modal").show();
+});
+
+//dismiss main modal when closed
+$(".close-btn").click(function() {
+  $("#workout-modal").hide();
+});
+
+
 var createExerciseButton = function (exerciseName) {
 
     var exerciseCard = $("#"+dayVariable);
