@@ -143,7 +143,10 @@ fetch(
 var loadBmi = function() {
   var loadedBmi = localStorage.getItem("bmi");
   document.getElementById("bmi").innerHTML = loadedBmi;
-}
+  if (!loadedBmi) {
+    document.getElementById("bmi").innerHTML = "Please click the BMI button to calculate your BMI."
+  }
+};
 
 loadBmi();
 
