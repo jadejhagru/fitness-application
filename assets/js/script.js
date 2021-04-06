@@ -139,6 +139,14 @@ fetch(
   return response.json();
 }).then(function(response) {console.log(response);})
 
+//load the user's bmi
+var loadBmi = function() {
+  var loadedBmi = localStorage.getItem("bmi");
+  document.getElementById("bmi").innerHTML = loadedBmi;
+}
+
+loadBmi();
+
 // //Old
 // //Holds all exercises
 // var exerciseList = {
