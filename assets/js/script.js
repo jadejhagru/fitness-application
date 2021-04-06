@@ -106,20 +106,6 @@ var showExercises = function(category) {
   })
 };
 
-//JADE STUFF
-$("#workout-btn").click(function() {
-  $("#workout-modal").show();
-
-  //should only trigger one exercise button click
-    addExerciseCardData();
-  //
-});
-
-//dismiss main modal when closed
-$(".close-btn").click(function() {
-  $("#workout-modal").hide();
-});
-
 
 var createExerciseButton = function (exerciseName) {
 
@@ -130,7 +116,7 @@ var createExerciseButton = function (exerciseName) {
     { return; }
 
     exerciseCard.find(".card-text").empty(); //removes rest
-    exerciseCard.append("<button id=\"workout-btn\" class=\""+exerciseName+"\">"+exerciseName+" place set and rep buttons here"+"</button>");
+    exerciseCard.append("<button type=\"button\" id=\"workout-btn\" class=\""+exerciseName+"\">"+exerciseName+" place set and rep buttons here"+"</button>");
 
     exerciseName = exerciseName.replaceAll(" ","-");
     exerciseName = exerciseName.replaceAll(",","-");
@@ -192,7 +178,23 @@ var createExerciseButton = function (exerciseName) {
 
       exerciseCard.find(buttonIdentifier+"-button.dropdown").append("<label class=selected-value></label>");
      } //end of for loop
+
+     //JADE STUFF
+      $("#workout-btn").click(function () {
+      $("#workout-modal").show();
+
+      //should only trigger one exercise button click
+        addExerciseCardData();
+      //
+    });
+
 }
+
+//dismiss main modal when closed
+$(".close-btn").click(function() {
+  $("#workout-modal").hide();
+  $(".newdiv").remove();
+    });
 
 //event listenser to assign set and rep button values
 $(".exercise-card").on("click","a",function()
@@ -221,29 +223,22 @@ var createExerciseCard = function() //dayId is the section it goes to in the day
 {
   //actual card code starts here 
   //$("#workout-modal").remove();
-  $("#workout-modal").append("<div class=\"card-body newdiv\"></div>");
-  var exerciseCard = $("#workout-modal").find(".newdiv"); 
-  exerciseCard.addClass("card exercise-card");
+  $(".modal-body").append("<div class=\"newdiv\"></div>");
   
   //Card image/GIF
-  exerciseCard.append("<img>");
-  exerciseCard.find("img").addClass("card-img-top exercise-graphic ");
+  $(".modal-body").find(".newdiv").append("<img class=\"exercise-graphic\"></img>");
 
   //Card name
-  exerciseCard.append("<div class=\"card-body\">");
-  exerciseCard.find(".card-body").append("<h5>");
-  exerciseCard.find(".card-body h5").addClass("card-title exercise-name ");
+  $(".modal-body").find(".newdiv").append("<h5 class=\"exercise-name\"></h5>");
 
   //Card description
-  exerciseCard.find(".card-body").append("<div class=\"card-text exercise-description\">");
+  $(".modal-body").find(".newdiv").append("<div class=\"exercise-description\"></div>");
 
   //Card muscle group
-  exerciseCard.find(".card-body").append("<ul class=\"list-group list-group-flush\">");
-  exerciseCard.find(".card-body").find(".list-group").append("<li class=\"list-group-item exercise-group \">");
+  $(".modal-body").find(".newdiv").append("<li class=\"exercise-group \"></li>");
 
   //Card rest tip
-  exerciseCard.find(".list-group").append("<li class=\"list-group-item helpful-tip\">")
-  exerciseCard.find(".list-group .helpful-tip").text("Remember to rest between every set for 40 secs to 1 min");
+  $(".modal-body").find(".newdiv").append("<li>Remember to rest between every set for 40 secs to 1 min</li>")
 }
 
 //appends data content to modal card for exercises
@@ -264,7 +259,7 @@ var addExerciseCardData = function () { fetch(
       $(".exercise-name").text(data.results[i].name);
       $(".exercise-graphic").attr('alt',data.results[i].name);
       $(".exercise-description").append(data.results[i].description);
-      $(".exercise-group").text(exerciseGroup); }
+      $(".exercise-group").text("Exercise Group:"+exerciseGroup); }
   }
 });
 
