@@ -98,10 +98,6 @@ var showExercises = function(category) {
           createExerciseButton($(this).text());
           selectedExerciseId = this.getAttribute("id");
 
-          //should only trigger one exercise button click
-          addExerciseCardData();
-          //
-
           $("#category").empty();
           $("#exercise-modal").hide();
         });
@@ -111,9 +107,12 @@ var showExercises = function(category) {
 };
 
 //JADE STUFF
-
 $("#workout-btn").click(function() {
   $("#workout-modal").show();
+
+  //should only trigger one exercise button click
+    addExerciseCardData();
+  //
 });
 
 //dismiss main modal when closed
@@ -131,7 +130,7 @@ var createExerciseButton = function (exerciseName) {
     { return; }
 
     exerciseCard.find(".card-text").empty(); //removes rest
-    exerciseCard.append("<button class=\""+exerciseName+"\">"+exerciseName+" place set and rep buttons here"+"</button>");
+    exerciseCard.append("<button id=\"workout-btn\" class=\""+exerciseName+"\">"+exerciseName+" place set and rep buttons here"+"</button>");
 
     exerciseName = exerciseName.replaceAll(" ","-");
     exerciseName = exerciseName.replaceAll(",","-");
@@ -221,9 +220,9 @@ $(".exercise-card").on("click","a",function()
 var createExerciseCard = function() //dayId is the section it goes to in the day column
 {
   //actual card code starts here 
-  $(".exercise-card").remove();
-  $(".exercise-card-section").append("<div class=\"card-body newdiv\"></div>");
-  var exerciseCard = $(".exercise-card-section").find(".newdiv"); 
+  //$("#workout-modal").remove();
+  $("#workout-modal").append("<div class=\"card-body newdiv\"></div>");
+  var exerciseCard = $("#workout-modal").find(".newdiv"); 
   exerciseCard.addClass("card exercise-card");
   
   //Card image/GIF
