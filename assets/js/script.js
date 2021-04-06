@@ -204,6 +204,28 @@ $(".exercise-card").on("click","a",function()
   $(this).parent().parent().parent().find(".selected-value").text(text);
 });
 
+// //ANDRE'S OLD STUFF - Keep this commented
+
+//using this to check the api list of exercises in the console log
+fetch(
+  'https://wger.de/api/v2/exercise/?format=json&limit=1000'
+)
+.then(function(response) {
+  return response.json();
+}).then(function(response) {console.log(response);})
+
+//load the user's bmi
+var loadBmi = function() {
+  var loadedBmi = localStorage.getItem("bmi");
+  document.getElementById("bmi").innerHTML = loadedBmi;
+  if (!loadedBmi) {
+    document.getElementById("bmi").innerHTML = "Please click the BMI button to calculate your BMI."
+  }
+};
+
+loadBmi();
+
+// //Old
 // //Holds all exercises
 // var exerciseList = {
 //   arms: ['bicepCurls','hammerCurls','tricepDip','tricepExtension'],
