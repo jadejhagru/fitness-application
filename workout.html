@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/master.css">
-    <title>WORKOUT</title>
+    <title>Obsidiflex - Workout Calendar</title>
 </head>
 <body>
     <!--Navigation-->
@@ -133,6 +133,10 @@
                 </div>
             </div>
         </div>
+    
+    <!-- This is a placeholder for row slot for the exercise cards script to be appended to on our day of the week column-->
+    <section class="exercise-card-section"></section>
+
     </container>
     </header>
     
@@ -154,11 +158,11 @@
 
 <!--JADE STUFF-->
 
-<div class="modal" id="workout-modal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="false">
+<div class="modal" id="workout-modal" tabindex="-1" role="dialog" aria-labelledby="exerciseModalLabel" aria-hidden="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-dark text-light">
             <div class="modal-header">
-                <h5 class="modal-title" id="profileModalLabel">Workout Guide</h5>
+                <h5 class="modal-title" id="exerciseModalLabel">Workout Guide</h5>
                 <button type="modal-close" class="close-btn" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
