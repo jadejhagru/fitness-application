@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/master.css">
+    <title>WORKOUT</title>
+</head>
+<body>
+    <!--Navigation-->
+    <header>
+        <div class="wrapper">
+            <ul class="nav-area">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="workout.html">WORKOUTS</a></li>
+                <li><a href="bmi.html">BMI</a></li>
+            </ul>
+        </div>
+    <container class="container">
+        <div class="row">
+            <div class="card text-white bg-dark">
+                <div class="card-header ">Your current BMI:</div>
+                <div class="card-body">
+                    <p class="card-text" id="bmi"></p>
+                </div>
+            </div>
+        </div>
+    </container>
+    <container>
+        <div class="row">
+            <div class="card-group">
+                <div class="card text-white bg-dark" id="day">
+                    <div class="card-header ">Sunday</div>
+                    <div class="card-body" id="sunday">
+                        <span class="add" style = "font-size: 3em; color: white;">
+                            <i class="fas fa-plus-circle color"></i>
+                        </span>
+                        <p class="card-text">
+                            Rest
+                            <span stlye="color: white;">
+                                <i class="fas fa-bed" ></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark" id="day">
+                    <div class="card-header ">Monday</div>
+                    <div class="card-body" id="monday">
+                        <span class="add" style = "font-size: 3em; color: white;">
+                            <i class="fas fa-plus-circle color"></i>
+                        </span>
+                        <p class="card-text">
+                            Rest
+                            <span stlye="color: white;">
+                                <i class="fas fa-bed" ></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark" id="day">
+                    <div class="card-header">Tuesday</div>
+                    <div class="card-body" id="tuesday">
+                        <span class="add" style = "font-size: 3em; color: white;">
+                            <i class="fas fa-plus-circle color"></i>
+                        </span>
+                        <p class="card-text">
+                            Rest
+                            <span stlye="color: white;">
+                                <i class="fas fa-bed" ></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark" id="day">
+                    <div class="card-header">Wednesday</div>
+                    <div class="card-body" id="wednesday">
+                        <span class="add" style = "font-size: 3em; color: white;">
+                            <i class="fas fa-plus-circle color"></i>
+                        </span>
+                        <p class="card-text">
+                            Rest
+                            <span stlye="color: white;">
+                                <i class="fas fa-bed" ></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark" id="day">
+                    <div class="card-header">Thursday</div>
+                    <div class="card-body" id="thursday">
+                        <span class="add" style = "font-size: 3em; color: white;">
+                            <i class="fas fa-plus-circle color"></i>
+                        </span>
+                        <p class="card-text">
+                            Rest
+                            <span stlye="color: white;">
+                                <i class="fas fa-bed" ></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark" id="day">
+                    <div class="card-header ">Friday</div>
+                    <div class="card-body" id="friday">
+                        <span class="add" style = "font-size: 3em; color: white;">
+                            <i class="fas fa-plus-circle color"></i>
+                        </span>
+                        <p class="card-text">
+                            Rest
+                            <span stlye="color: white;">
+                                <i class="fas fa-bed" ></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark" id="day">
+                    <div class="card-header">Saturday</div>
+                    <div class="card-body" id="saturday">
+                        <span class="add" style = "font-size: 3em; color: white;">
+                            <i class="fas fa-plus-circle color"></i>
+                        </span>
+                        <p class="card-text">
+                            Rest
+                            <span stlye="color: white;">
+                                <i class="fas fa-bed" ></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </container>
+    </header>
+    
+    <div class="modal" id="exercise-modal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Choose Exercise</h5>
+                    <button type="modal-close" class="close-btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mx-sm-3 mb-2" id="category"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/dab1fb85fe.js" crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

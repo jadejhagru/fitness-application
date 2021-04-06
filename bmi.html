@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/bmi.css">
+    <link rel="stylesheet" href="assets/css/master.css">
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <!--Navigation-->
+    <header>
+        <div class="wrapper">
+            <ul class="nav-area">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="workout.html">WORKOUTS</a></li>
+                <li><a href="bmi.html">BMI</a></li>
+            </ul>
+        </div>
+
+    <div class="contain">
+        <h2>BMI Calculator</h2>
+        <p class="weight">Weight (kg)</p>
+        <input type="number" id="w">
+
+        <p class="height">Height (cm)</p>
+        <input type="number" id="h">
+
+        <p id="result"></p>
+        <button type="button" id="profile-button" onClick="BMI()">Calculate</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="assets/js/bmi.js"></script>
+    
+</body>
+</html>
