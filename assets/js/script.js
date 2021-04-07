@@ -1,7 +1,17 @@
 //globally call userProfile as an object with empty attributes
 var userProfile = {
-    Weight: "",
-    Height: ""
+  Weight: "",
+  Height: ""
+};
+
+var workout = {
+  sunday: [],
+  monday: [],
+  tuesday: [],
+  wednesday: [],
+  thursday: [],
+  friday: [],
+  saturday: []
 };
 
 //globally stores currently selected exercise ID
@@ -11,38 +21,42 @@ var dayVariable;
 var selectedDay = "";
 var exerciseGroup;
 
+var savedExerciseName;
+var savedExerciseId;
+var savedExerciseDay;
+
 //show modal on profile button click
-$("#profile-button").click(function() {
-    $("#profile-modal").show();
+$("#profile-button").click(function () {
+  $("#profile-modal").show();
 });
 
 //dismiss main modal when closed
-$(".close-btn").click(function() {
-    $("#profile-modal").hide();
+$(".close-btn").click(function () {
+  $("#profile-modal").hide();
 });
 
 //send user stats to userProfile object
-$("#submit-button").click(function() {
-    var userWeight = $("input[id='weight'").val();
-    var userHeight = $("input[id='height'").val();
-    userProfile.Weight = userWeight;
-    userProfile.Height = userHeight;
-    saveProfile(userProfile);
+$("#submit-button").click(function () {
+  var userWeight = $("input[id='weight'").val();
+  var userHeight = $("input[id='height'").val();
+  userProfile.Weight = userWeight;
+  userProfile.Height = userHeight;
+  saveProfile(userProfile);
 });
 
 //save the user's profile to localstorage
-var saveProfile = function(userProfile) {
-    localStorage.setItem("userProfile", JSON.stringify(userProfile));
+var saveProfile = function (userProfile) {
+  localStorage.setItem("userProfile", JSON.stringify(userProfile));
 };
 
-$(".close-btn").click(function() {
+$(".close-btn").click(function () {
   $("#exercise-modal").hide();
   $("#category").empty();
 });
 
 //add exercise
-$("span.add").click(function() {
-  
+$("span.add").click(function () {
+
   selectedDay = $(this).parent().siblings().text(); //used to append buttons
 
   dayVariable = $(this).parent()[0].attributes.id.value; //used to append buttons
@@ -73,13 +87,13 @@ var showCategories = function (exercisecategory) {
     categoryEl.setAttribute("id", exercisecategory[i].id);
     $("#category").append(categoryEl);
   }
-  $(".category-btn").click(function() {
+  $(".category-btn").click(function () {
     showExercises($(this)[0].attributes.id.value);
     exerciseGroup = this.textContent;
   })
 };
 
-var showExercises = function(category) {
+var showExercises = function (category) {
   var apiUrl = "https://wger.de/api/v2/exercise/?format=json&limit=1000" + "&category=" + category + "&equipment=7";
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
@@ -95,7 +109,7 @@ var showExercises = function(category) {
 
         $(".exercise-btn").click(function (event) {
 
-          createExerciseButton($(this).text(),this.getAttribute("id"));
+          createExerciseButton($(this).text(), this.getAttribute("id"), dayVariable);
           selectedExerciseId = this.getAttribute("id");
 
           $("#category").empty();
@@ -106,98 +120,130 @@ var showExercises = function(category) {
   })
 };
 
+var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
 
-var createExerciseButton = function (exerciseName, exerciseId) {
+  debugger;
 
-    var exerciseCard = $("#"+dayVariable);
-    
-    //ensures that exercises are not duplicated
-    if(exerciseCard.find("button").prevObject[0].innerText.includes(exerciseName))
-    { return; }
+  var exerciseCard = $("#" + dayVar);
 
-    exerciseCard.find(".card-text").empty(); //removes rest
-    exerciseCard.append("<button type=\"button\" id=\""+exerciseId+"\" class=\""+exerciseName+" workout-btn\">"+exerciseName+" place set and rep buttons here"+"</button>");
+  //ensures that exercises are not duplicated
+  if (exerciseCard.find("button").prevObject[0].innerText.includes(exerciseName)) { return; }
 
-    exerciseName = exerciseName.replaceAll(" ","-");
-    exerciseName = exerciseName.replaceAll(",","-");
-    exerciseName = exerciseName.toLowerCase();
-  
-    //Creates set,rep count and rep time selection button---
-    var buttonName = ["set","rep-count","rep-group"];
-  for (var i = 0; i < 3; i++)
-  {
-    exerciseCard.append("<div class=\"dropdown\" id=\""+buttonName[i]+"-"+exerciseName+"-button\">");
+  exerciseCard.find(".card-text").empty(); //removes rest
+  exerciseCard.append("<button type=\"button\" id=\"" + exerciseId + "\" class=\"" + exerciseName + " workout-btn\">" + exerciseName + " place set and rep buttons here" + "</button>");
 
-    var buttonIdentifier = ("#"+buttonName[i]+"-"+exerciseName);
+  exerciseName = exerciseName.replaceAll(" ", "-");
+  exerciseName = exerciseName.replaceAll(",", "-");
+  exerciseName = exerciseName.toLowerCase();
 
-    exerciseCard.find(buttonIdentifier+"-button.dropdown").append("<button id=\""+buttonName[i]+"-"+exerciseName+"-buttons\"></button>");
-    exerciseCard.find(buttonIdentifier+"-button.dropdown").find("button").addClass("btn btn-secondary dropdown-toggle");
-    exerciseCard.find(buttonIdentifier+"-button.dropdown").find("button").attr("type","button");
-    exerciseCard.find(buttonIdentifier+"-button.dropdown").find("button").attr("data-bs-toggle","dropdown");
-    exerciseCard.find(buttonIdentifier+"-button.dropdown").find("button").attr("aria-expanded","false");
+  //Creates set,rep count and rep time selection button---
+  var buttonName = ["set", "rep-count", "rep-group"];
+  for (var i = 0; i < 3; i++) {
+    exerciseCard.append("<div class=\"dropdown\" id=\"" + buttonName[i] + "-" + exerciseName + "-button\">");
+
+    var buttonIdentifier = ("#" + buttonName[i] + "-" + exerciseName);
+
+    exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<button id=\"" + buttonName[i] + "-" + exerciseName + "-buttons\"></button>");
+    exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").addClass("btn btn-secondary dropdown-toggle");
+    exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("type", "button");
+    exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("data-bs-toggle", "dropdown");
+    exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("aria-expanded", "false");
 
     var buttonText; // button menu name
 
-    if (i === 0)
-    {
-      buttonText="Sets";
+    if (i === 0) {
+      buttonText = "Sets";
     }
-    else if (i === 1)
-    {
-      buttonText="Rep Count";
+    else if (i === 1) {
+      buttonText = "Rep Count";
     }
-    else if(i === 2)
-    { 
-      buttonText="Rep Time";
+    else if (i === 2) {
+      buttonText = "Rep Time";
     }
 
-     exerciseCard.find(buttonIdentifier+"-button.dropdown").find("button").text(buttonText);
+    exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").text(buttonText);
 
     //creates menu options
-      exerciseCard.find(buttonIdentifier+"-button.dropdown").append("<ul id=\""+buttonName[i]+"-"+exerciseName+"-options\"></ul>")
-      exerciseCard.find(buttonIdentifier+"-options").addClass("dropdown-menu").attr("aria-labelledby",buttonName[i]+"-"+exerciseName+"-buttons");
+    exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<ul id=\"" + buttonName[i] + "-" + exerciseName + "-options\"></ul>")
+    exerciseCard.find(buttonIdentifier + "-options").addClass("dropdown-menu").attr("aria-labelledby", buttonName[i] + "-" + exerciseName + "-buttons");
 
-      if (i === 0) //Note: &#35 is to show the # character in the HTML href attribute
-      {
-        exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">3</a></li>");
-        exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">4</a></li>");
-      }
-      else if (i === 1)
-      {
-        exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">5-8</a></li>");
-        exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">8-10</a></li>");
-        exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">10-12</a></li>");
-        exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">12-15</a></li>");
-      }
-      else if(i === 2)
-      { 
-        exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">15</a></li>");
-        exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">30</a></i>");
-        exerciseCard.find(buttonIdentifier+"-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">60</a></li>");
-      }
+    if (i === 0) //Note: &#35 is to show the # character in the HTML href attribute
+    {
+      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">3</a></li>");
+      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">4</a></li>");
+    }
+    else if (i === 1) {
+      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">5-8</a></li>");
+      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">8-10</a></li>");
+      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">10-12</a></li>");
+      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">12-15</a></li>");
+    }
+    else if (i === 2) {
+      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">15</a></li>");
+      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">30</a></i>");
+      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">60</a></li>");
+    }
 
-      exerciseCard.find(buttonIdentifier+"-button.dropdown").append("<label class=selected-value></label>");
-     } //end of for loop
+    exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<label class=selected-value></label>");
+  } //end of for loop
 
-     //JADE STUFF
-      $(".workout-btn").click(function () {
-      $("#workout-modal").show();
+  //JADE STUFF
+  $(".workout-btn").click(function () {
+    $("#workout-modal").show();
 
-      //should only trigger one exercise button click
-        addExerciseCardData(exerciseId);
-      //
-    });
+    //should only trigger one exercise button click
+    addExerciseCardData(exerciseId);
+    //
+  });
 
-      //dismiss main modal when closed
-      $(".close-btn").click(function() {
-      $("#workout-modal").hide();
-      $(".newdiv").remove();
-        });
+  //dismiss main modal when closed
+  $(".close-btn").click(function () {
+    $("#workout-modal").hide();
+    $(".newdiv").remove();
+  });
+
+  saveSchedule(exerciseCard, exerciseId);
+};
+
+var saveSchedule = function (exerciseCard, exerciseId) {
+    if (exerciseCard[0].id == "sunday") {
+      workout.sunday.push(exerciseId);
+    } else if (exerciseCard[0].id == "monday") {
+      workout.monday.push(exerciseId);
+    } else if (exerciseCard[0].id == "tuesday") {
+      workout.tuesday.push(exerciseId);
+    } else if (exerciseCard[0].id == "wednesday") {
+      workout.wednesday.push(exerciseId);
+    } else if (exerciseCard[0].id == "thursday") {
+      workout.thursday.push(exerciseId);
+    } else if (exerciseCard[0].id == "friday") {
+      workout.friday.push(exerciseId);
+    } else if (exerciseCard[0].id == "saturday") {
+      workout.saturday.push(exerciseId);
+    }
+    saveWorkout();
+};
+
+var saveWorkout = function () {
+  localStorage.setItem("workout", JSON.stringify(workout));
 }
 
+var loadWorkout = function() {
+  debugger;
+  var loadedWorkout = JSON.parse(localStorage.getItem("workout"));
+  loadedWorkout.Sunday
+  for (const property in loadedWorkout) {
+    if (loadedWorkout) {
+      for (i = 0; i < property.length; i++) {
+        createExerciseButton("something", loadedWorkout.property[i], loadedWorkout.property);
+      }
+    } 
+  }
+};
+
+
 //event listenser to assign set and rep button values
-$(".exercise-card").on("click","a",function()
-{
+$(".exercise-card").on("click", "a", function () {
   event.preventDefault();
   var text = $(this).text().trim();
 
@@ -210,12 +256,12 @@ $(".exercise-card").on("click","a",function()
 fetch(
   'https://wger.de/api/v2/exercise/?format=json&limit=1000'
 )
-.then(function(response) {
-  return response.json();
-}).then(function(response) {console.log(response);})
+  .then(function (response) {
+    return response.json();
+  }).then(function (response) { console.log(response); })
 
 //load the user's bmi
-var loadBmi = function() {
+var loadBmi = function () {
   var loadedBmi = localStorage.getItem("bmi");
   document.getElementById("bmi").innerHTML = loadedBmi;
   if (!loadedBmi) {
@@ -230,22 +276,22 @@ loadBmi();
 // var exerciseList = {
 //   arms: ['bicepCurls','hammerCurls','tricepDip','tricepExtension'],
 //   shoulders: ['lateralRaises','shoulderPressDumbbells','lateralFrontRaises','shoulderShrug'],
-  
+
 //   chest: ['benchPress','inclineDumbbellPress','pushups'],
 //   abs: [absCrunches,'legRaises','plank','sideCrunch'],
 //   back: ['bentoverDumbbellRows','pullUps','hipRaiseLying','longPulleyRow'],
-  
+
 //   legs: ['romanianDeadlift','squats','dumbbellLungesStanding'],
 //   calves: ['calfRaises','legCurl','legExtenstion']
 // }
 
 //Creates exercise card object - needs be to scoped to the exercise option selection loop
-var createExerciseCard = function() //dayId is the section it goes to in the day column
+var createExerciseCard = function () //dayId is the section it goes to in the day column
 {
   //actual card code starts here 
   //$("#workout-modal").remove();
   $(".modal-body").append("<div class=\"newdiv\"></div>");
-  
+
   //Card image/GIF
   $(".modal-body").find(".newdiv").append("<img class=\"exercise-graphic\"></img>");
 
@@ -263,36 +309,40 @@ var createExerciseCard = function() //dayId is the section it goes to in the day
 }
 
 //appends data content to modal card for exercises
-var addExerciseCardData = function (exerciseId) { fetch(
-  'https://wger.de/api/v2/exercise/?format=json&limit=1000'
-)
-.then(function(response) {
-  return response.json();
-})
-.then(function(data) {
+var addExerciseCardData = function (exerciseId) {
+  fetch(
+    'https://wger.de/api/v2/exercise/?format=json&limit=1000'
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
 
-  createExerciseCard();
+      createExerciseCard();
 
-  //checks if exercise id is listed in the API
-  for (i = 0; i < data.results.length; i++ ){
+      //checks if exercise id is listed in the API
+      for (i = 0; i < data.results.length; i++) {
 
-    if (exerciseId == data.results[i].id){
-      $(".exercise-name").text(data.results[i].name);
-      $(".exercise-graphic").attr('alt',data.results[i].name);
-      $(".exercise-description").append(data.results[i].description);
-      $(".exercise-group").text("Exercise Group:"+exerciseGroup); }
-  }
-});
+        if (exerciseId == data.results[i].id) {
+          $(".exercise-name").text(data.results[i].name);
+          $(".exercise-graphic").attr('alt', data.results[i].name);
+          $(".exercise-description").append(data.results[i].description);
+          $(".exercise-group").text("Exercise Group:" + exerciseGroup);
+        }
+      }
+    });
 
-// //giphy fetch will go here
-// fetch(
-//   'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
-// )
-//   .then(function(response) {
-//     return response.json();
-//   })
-//   .then(function(response) {
+  // //giphy fetch will go here
+  // fetch(
+  //   'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
+  // )
+  //   .then(function(response) {
+  //     return response.json();
+  //   })
+  //   .then(function(response) {
 
-//     $(".exercise-graphic.").attr('src',response.data.images.downsized_large.url);
-// })
+  //     $(".exercise-graphic.").attr('src',response.data.images.downsized_large.url);
+  // })
 };
+
+loadWorkout();
