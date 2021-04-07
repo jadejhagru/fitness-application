@@ -129,6 +129,14 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
   exerciseName = exerciseName.replaceAll(" ", "-");
   exerciseName = exerciseName.replaceAll(",", "-");
   exerciseName = exerciseName.toLowerCase();
+  exerciseCard.append("<button type=\"button\" class=\"removeButton "+ exerciseName +"\">X</button>");
+  $(".removeButton").click(function () { 
+  $(this).parent().find("#"+exerciseId).remove(); 
+  if (!$(this).parent().find("fas.fa-bed")) {
+  $(this).parent().append("<i class=\"fas fa-bed\" aria-hidden=\"true\"></i>");
+  };
+  $(this).remove();
+  });
 
 
 
