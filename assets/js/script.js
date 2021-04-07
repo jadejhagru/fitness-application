@@ -184,7 +184,7 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
   //JADE STUFF
   $(".workout-btn").click(function () {
     $("#workout-modal").show();
-
+    debugger;
     //should only trigger one exercise button click
     addExerciseCardData(exerciseId);
     //
@@ -201,6 +201,10 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
 
 $(".save-button").click(function () {
   saveWorkout();
+});
+
+$(".load-button").click(function () {
+  loadWorkout();
 });
 
 var saveSchedule = function (exerciseCard, exerciseId) {
@@ -250,7 +254,6 @@ var loadWorkout = function() {
 
     for (i = 0; i < loadedWorkout.sunday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-        console.log(loadedWorkout.sunday[i]);
       getExerciseName(loadedWorkout.sunday[i], "sunday");
       }
     }
@@ -301,16 +304,6 @@ $(".exercise-card").on("click", "a", function () {
 
   $(this).parent().parent().parent().find(".selected-value").text(text);
 });
-
-// //ANDRE'S OLD STUFF - Keep this commented
-
-//using this to check the api list of exercises in the console log
-fetch(
-  'https://wger.de/api/v2/exercise/?format=json&limit=1000'
-)
-  .then(function (response) {
-    return response.json();
-  }).then(function (response) { console.log(response); })
 
 //load the user's bmi
 var loadBmi = function () {
@@ -396,5 +389,3 @@ var addExerciseCardData = function (exerciseId) {
   //     $(".exercise-graphic.").attr('src',response.data.images.downsized_large.url);
   // })
 };
-
-loadWorkout();
