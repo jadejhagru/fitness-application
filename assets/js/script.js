@@ -130,6 +130,16 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
   exerciseName = exerciseName.replaceAll(",", "-");
   exerciseName = exerciseName.toLowerCase();
 
+
+
+   //JADE STUFF
+   $(".workout-btn").click(function () {
+    $("#workout-modal").show();
+    //should only trigger one exercise button click
+    addExerciseCardData(exerciseId);
+    //
+  });
+
   // //Creates set,rep count and rep time selection button---
   // var buttonName = ["set", "rep-count", "rep-group"];
   // for (var i = 0; i < 3; i++) {
@@ -181,15 +191,6 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
   //   exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<label class=selected-value></label>");
   // } //end of for loop
 
-  //JADE STUFF
-  $(".workout-btn").click(function () {
-    $("#workout-modal").show();
-    debugger;
-    //should only trigger one exercise button click
-    addExerciseCardData(exerciseId);
-    //
-  });
-
   //dismiss main modal when closed
   $(".close-btn").click(function () {
     $("#workout-modal").hide();
@@ -237,7 +238,6 @@ var getExerciseName = function (loadExerciseId, day) {
       return response.json();
     })
     .then(function (data) {
-      debugger;
       //checks if exercise id is listed in the API
       for (i = 0; i < data.results.length; i++) {
         if (loadExerciseId == data.results[i].id) {
@@ -250,7 +250,6 @@ var getExerciseName = function (loadExerciseId, day) {
 var loadWorkout = function() {
 
   var loadedWorkout = JSON.parse(localStorage.getItem("workout"));
-  debugger;
 
     for (i = 0; i < loadedWorkout.sunday.length; i++) {
       if(loadedWorkout.sunday[i]) {
