@@ -230,7 +230,6 @@ var saveWorkout = function () {
 }
 
 var getExerciseName = function (loadExerciseId, day) {
-
   fetch(
     'https://wger.de/api/v2/exercise/?format=json&limit=1000'
   )
@@ -238,7 +237,7 @@ var getExerciseName = function (loadExerciseId, day) {
       return response.json();
     })
     .then(function (data) {
-
+      debugger;
       //checks if exercise id is listed in the API
       for (i = 0; i < data.results.length; i++) {
         if (loadExerciseId == data.results[i].id) {
@@ -251,6 +250,7 @@ var getExerciseName = function (loadExerciseId, day) {
 var loadWorkout = function() {
 
   var loadedWorkout = JSON.parse(localStorage.getItem("workout"));
+  debugger;
 
     for (i = 0; i < loadedWorkout.sunday.length; i++) {
       if(loadedWorkout.sunday[i]) {
@@ -259,37 +259,38 @@ var loadWorkout = function() {
     }
 
     for (i = 0; i < loadedWorkout.monday.length; i++) {
-      if(loadedWorkout.sunday[i]) {
+      console.log(i);
+      if(loadedWorkout.monday[i]) {
         getExerciseName(loadedWorkout.monday[i], "monday");
       }
     }
 
     for (i = 0; i < loadedWorkout.tuesday.length; i++) {
-      if(loadedWorkout.sunday[i]) {
+      if(loadedWorkout.tuesday[i]) {
         getExerciseName(loadedWorkout.tuesday[i], "tuesday");
       }
     }
 
     for (i = 0; i < loadedWorkout.wednesday.length; i++) {
-      if(loadedWorkout.sunday[i]) {
+      if(loadedWorkout.wednesday[i]) {
         getExerciseName(loadedWorkout.wednesday[i], "wednesday");
       }
     }
 
     for (i = 0; i < loadedWorkout.thursday.length; i++) {
-      if(loadedWorkout.sunday[i]) {
+      if(loadedWorkout.thursday[i]) {
         getExerciseName(loadedWorkout.thursday[i], "thursday");
       }
     }
 
     for (i = 0; i < loadedWorkout.friday.length; i++) {
-      if(loadedWorkout.sunday[i]) {
+      if(loadedWorkout.friday[i]) {
         getExerciseName(loadedWorkout.friday[i], "friday");
       }
     }
 
     for (i = 0; i < loadedWorkout.saturday.length; i++) {
-      if(loadedWorkout.sunday[i]) {
+      if(loadedWorkout.saturday[i]) {
         getExerciseName(loadedWorkout.saturday[i], "saturday");
       }
     }
