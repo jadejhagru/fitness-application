@@ -130,18 +130,19 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
   exerciseName = exerciseName.replaceAll(",", "-");
   exerciseName = exerciseName.toLowerCase();
   exerciseCard.append("<button type=\"button\" class=\"removeButton "+ exerciseName +"\">X</button>");
+
   $(".removeButton").click(function () { 
   $(this).parent().find("#"+exerciseId).remove(); 
-  if (!$(this).parent().find("fas.fa-bed")) {
-  $(this).parent().append("<i class=\"fas fa-bed\" aria-hidden=\"true\"></i>");
+
+  if (!($(this).parent().find("buttons")).prevObject[0].children[1].val) {
+  $(this).parent().find(".card-text").append("<p class=\"card-text\">Rest<span stlye=\"color: white;\"><i class=\"fas fa-bed\" aria-hidden=\"true\"></i></span></p>");
   };
+
   $(this).remove();
   });
 
-
-
    //JADE STUFF
-   $(".workout-btn").click(function () {
+   $("#"+exerciseId+".workout-btn").click(function () {
     $("#workout-modal").show();
     //should only trigger one exercise button click
     addExerciseCardData(exerciseId);
