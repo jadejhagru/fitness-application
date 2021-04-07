@@ -260,37 +260,37 @@ var loadWorkout = function() {
 
     for (i = 0; i < loadedWorkout.monday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-        getExerciseName(loadedWorkout.sunday[i], "monday");
+        getExerciseName(loadedWorkout.monday[i], "monday");
       }
     }
 
     for (i = 0; i < loadedWorkout.tuesday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-        getExerciseName(loadedWorkout.sunday[i], "tuesday");
+        getExerciseName(loadedWorkout.tuesday[i], "tuesday");
       }
     }
 
     for (i = 0; i < loadedWorkout.wednesday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-        getExerciseName(loadedWorkout.sunday[i], "wednesday");
+        getExerciseName(loadedWorkout.wednesday[i], "wednesday");
       }
     }
 
     for (i = 0; i < loadedWorkout.thursday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-        getExerciseName(loadedWorkout.sunday[i], "thursday");
+        getExerciseName(loadedWorkout.thursday[i], "thursday");
       }
     }
 
     for (i = 0; i < loadedWorkout.friday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-        getExerciseName(loadedWorkout.sunday[i], "friday");
+        getExerciseName(loadedWorkout.friday[i], "friday");
       }
     }
 
     for (i = 0; i < loadedWorkout.saturday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-        getExerciseName(loadedWorkout.sunday[i], "saturday");
+        getExerciseName(loadedWorkout.saturday[i], "saturday");
       }
     }
 
