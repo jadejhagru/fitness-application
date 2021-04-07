@@ -130,56 +130,56 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
   exerciseName = exerciseName.replaceAll(",", "-");
   exerciseName = exerciseName.toLowerCase();
 
-  //Creates set,rep count and rep time selection button---
-  var buttonName = ["set", "rep-count", "rep-group"];
-  for (var i = 0; i < 3; i++) {
-    exerciseCard.append("<div class=\"dropdown\" id=\"" + buttonName[i] + "-" + exerciseName + "-button\">");
+  // //Creates set,rep count and rep time selection button---
+  // var buttonName = ["set", "rep-count", "rep-group"];
+  // for (var i = 0; i < 3; i++) {
+  //   exerciseCard.append("<div class=\"dropdown\" id=\"" + buttonName[i] + "-" + exerciseName + "-button\">");
 
-    var buttonIdentifier = ("#" + buttonName[i] + "-" + exerciseName);
+  //   var buttonIdentifier = ("#" + buttonName[i] + "-" + exerciseName);
 
-    exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<button id=\"" + buttonName[i] + "-" + exerciseName + "-buttons\"></button>");
-    exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").addClass("btn btn-secondary dropdown-toggle");
-    exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("type", "button");
-    exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("data-bs-toggle", "dropdown");
-    exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("aria-expanded", "false");
+  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<button id=\"" + buttonName[i] + "-" + exerciseName + "-buttons\"></button>");
+  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").addClass("btn btn-secondary dropdown-toggle");
+  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("type", "button");
+  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("data-bs-toggle", "dropdown");
+  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("aria-expanded", "false");
 
-    var buttonText; // button menu name
+  //   var buttonText; // button menu name
 
-    if (i === 0) {
-      buttonText = "Sets";
-    }
-    else if (i === 1) {
-      buttonText = "Rep Count";
-    }
-    else if (i === 2) {
-      buttonText = "Rep Time";
-    }
+  //   if (i === 0) {
+  //     buttonText = "Sets";
+  //   }
+  //   else if (i === 1) {
+  //     buttonText = "Rep Count";
+  //   }
+  //   else if (i === 2) {
+  //     buttonText = "Rep Time";
+  //   }
 
-    exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").text(buttonText);
+  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").text(buttonText);
 
-    //creates menu options
-    exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<ul id=\"" + buttonName[i] + "-" + exerciseName + "-options\"></ul>")
-    exerciseCard.find(buttonIdentifier + "-options").addClass("dropdown-menu").attr("aria-labelledby", buttonName[i] + "-" + exerciseName + "-buttons");
+  //   //creates menu options
+  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<ul id=\"" + buttonName[i] + "-" + exerciseName + "-options\"></ul>")
+  //   exerciseCard.find(buttonIdentifier + "-options").addClass("dropdown-menu").attr("aria-labelledby", buttonName[i] + "-" + exerciseName + "-buttons");
 
-    if (i === 0) //Note: &#35 is to show the # character in the HTML href attribute
-    {
-      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">3</a></li>");
-      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">4</a></li>");
-    }
-    else if (i === 1) {
-      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">5-8</a></li>");
-      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">8-10</a></li>");
-      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">10-12</a></li>");
-      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">12-15</a></li>");
-    }
-    else if (i === 2) {
-      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">15</a></li>");
-      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">30</a></i>");
-      exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">60</a></li>");
-    }
+  //   if (i === 0) //Note: &#35 is to show the # character in the HTML href attribute
+  //   {
+  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">3</a></li>");
+  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">4</a></li>");
+  //   }
+  //   else if (i === 1) {
+  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">5-8</a></li>");
+  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">8-10</a></li>");
+  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">10-12</a></li>");
+  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">12-15</a></li>");
+  //   }
+  //   else if (i === 2) {
+  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">15</a></li>");
+  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">30</a></i>");
+  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">60</a></li>");
+  //   }
 
-    exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<label class=selected-value></label>");
-  } //end of for loop
+  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<label class=selected-value></label>");
+  // } //end of for loop
 
   //JADE STUFF
   $(".workout-btn").click(function () {
