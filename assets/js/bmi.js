@@ -17,7 +17,6 @@ function BMI() {
 };
 
 var loadProfile = function () {
-    debugger;
     var loadedProfile = JSON.parse(localStorage.getItem("userProfile"));
     if (loadedProfile) {
         h = loadedProfile.Height;

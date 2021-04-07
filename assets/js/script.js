@@ -267,7 +267,6 @@ var loadWorkout = function() {
     }
 
     for (i = 0; i < loadedWorkout.monday.length; i++) {
-      console.log(i);
       if(loadedWorkout.monday[i]) {
         getExerciseName(loadedWorkout.monday[i], "monday");
       }
