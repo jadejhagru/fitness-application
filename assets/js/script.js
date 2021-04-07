@@ -21,10 +21,6 @@ var dayVariable;
 var selectedDay = "";
 var exerciseGroup;
 
-var savedExerciseName;
-var savedExerciseId;
-var savedExerciseDay;
-
 //show modal on profile button click
 $("#profile-button").click(function () {
   $("#profile-modal").show();
@@ -121,8 +117,6 @@ var showExercises = function (category) {
 };
 
 var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
-
-  debugger;
 
   var exerciseCard = $("#" + dayVar);
 
@@ -231,49 +225,69 @@ var saveWorkout = function () {
   localStorage.setItem("workout", JSON.stringify(workout));
 }
 
+var getExerciseName = function (loadExerciseId, day) {
+
+  fetch(
+    'https://wger.de/api/v2/exercise/?format=json&limit=1000'
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+
+      //checks if exercise id is listed in the API
+      for (i = 0; i < data.results.length; i++) {
+        if (loadExerciseId == data.results[i].id) {
+          createExerciseButton(data.results[i].name, loadExerciseId, day);
+        }
+      }
+    });
+}
+
 var loadWorkout = function() {
-  debugger;
+
   var loadedWorkout = JSON.parse(localStorage.getItem("workout"));
 
     for (i = 0; i < loadedWorkout.sunday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-      createExerciseButton("something", loadedWorkout.sunday[i], "sunday");
+        console.log(loadedWorkout.sunday[i]);
+      getExerciseName(loadedWorkout.sunday[i], "sunday");
       }
     }
 
     for (i = 0; i < loadedWorkout.monday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-      createExerciseButton("something", loadedWorkout.sunday[i], "monday");
+        getExerciseName(loadedWorkout.sunday[i], "monday");
       }
     }
 
     for (i = 0; i < loadedWorkout.tuesday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-      createExerciseButton("something", loadedWorkout.sunday[i], "tuesday");
+        getExerciseName(loadedWorkout.sunday[i], "tuesday");
       }
     }
 
     for (i = 0; i < loadedWorkout.wednesday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-      createExerciseButton("something", loadedWorkout.sunday[i], "wednesday");
+        getExerciseName(loadedWorkout.sunday[i], "wednesday");
       }
     }
 
     for (i = 0; i < loadedWorkout.thursday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-      createExerciseButton("something", loadedWorkout.sunday[i], "thursday");
+        getExerciseName(loadedWorkout.sunday[i], "thursday");
       }
     }
 
     for (i = 0; i < loadedWorkout.friday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-      createExerciseButton("something", loadedWorkout.sunday[i], "friday");
+        getExerciseName(loadedWorkout.sunday[i], "friday");
       }
     }
 
     for (i = 0; i < loadedWorkout.saturday.length; i++) {
       if(loadedWorkout.sunday[i]) {
-      createExerciseButton("something", loadedWorkout.sunday[i], "saturday");
+        getExerciseName(loadedWorkout.sunday[i], "saturday");
       }
     }
 
