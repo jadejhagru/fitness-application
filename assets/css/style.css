@@ -113,7 +113,6 @@ header {
      justify-content: center;
  }
 
-
 .save-button, .load-button {
     width: 150px;
     padding: 15px 0;
@@ -127,8 +126,14 @@ header {
     cursor: pointer;
 }
 
+.save-button:hover, .load-button:hover {
+    background: black;
+    color: white;
+    transition: 0.5;
+}
+
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 700px)  {
     .wrapper {
         padding-bottom: 0;
         justify-content: center;
@@ -147,7 +152,7 @@ header {
     }
 
     .welcome-text h1 {
-        font-size: 30px;
+        font-size: 20px;
         text-align: center;
     }
 
@@ -158,5 +163,19 @@ header {
     #submit-button {
         width: 150px;
         font-size: 10px;
+    }
+
+    .save-button, .load-button {
+        width: 100px;
+        padding: 15px 0;
+        text-align: center;
+        margin: 20px 10px;
+        border-radius: 25px;
+        font-weight: 150px;
+        font-size: 10px;
+        border: 2px solid white;
+        background: transparent;
+        color: white;
+        cursor: pointer;
     }
 }
