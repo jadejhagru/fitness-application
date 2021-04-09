@@ -194,7 +194,7 @@ header {
     cursor: pointer;
 }
 
-.close-btn {
+.close-btn, .removeButton {
     width: 50px;
     height: 50px;
     padding: 10px 0;
