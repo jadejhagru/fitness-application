@@ -20,7 +20,9 @@ body{
     background-size: cover;
     background-position: center center;
     position: relative;
-    text-align: center;
+    text-align: center; 
+    display: flex;
+    flex-wrap: wrap;
 }
 
 header {
@@ -34,6 +36,8 @@ header {
     float: right;
     list-style: none;
     margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .nav-area li{
@@ -87,7 +91,7 @@ header {
     font-size: 20px;
 }
 
-#profile-button, #submit-button {
+#submit-button {
     width: 200px;
     padding: 15px 0;
     text-align: center;
@@ -100,41 +104,31 @@ header {
     cursor: pointer;
 }
 
-#submit-button:hover, #profile-button:hover {
+#submit-button:hover {
     background: white;
     color: black;
     transition: 0.5s;
 }
 
-.exercise-set-rep{
-    position: absolute; 
-    transform: translate3d(0px, 31px, 0px);
-    top: 0px; 
-    left: 0px; 
-    will-change: transform;
-}
+/* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
+@media screen and (max-width: 700px) {
+    .nav-area {
+        display: block;
+    }
 
-.exercise-card{
-    width: 18rem;
-}
-#day {
-  word-wrap: normal;  
-}
+    .welcome-text h1 {
+        font-size: 30px;
+        text-align: center;
+    }
 
-.card-group {
-    width: 100%;
-    height: 100%;
-    opacity: 97%;
-}
+    .welcome-text p {
+        font-size: 15px;
+    }
 
-.card {
-    opacity: 97%;
+    #submit-button {
+        width: 150px;
+        font-size: 15px;
+    }
 }
-
-.btn-group {
-    display: inline;
-}
-
-button {
-    margin: 1px;
-}
+  
+ 
