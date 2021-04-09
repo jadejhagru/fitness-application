@@ -69,6 +69,8 @@ body{
     height: 100vh;
     background-size: cover;
     background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     position: relative;
 }
 
@@ -132,3 +134,40 @@ h2 {
     color: black;
     transition: 0.5s;
 }
+
+/* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
+@media screen and (max-width: 700px) {
+    .wrapper {
+        padding-bottom: 0;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+      }
+
+    .welcome-text h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .welcome-text p {
+        font-size: 15px;
+    }
+
+    #submit-button {
+        width: 150px;
+        font-size: 10px;
+    }
+
+    .contain h2 {
+        font-size: 20px;
+    }
+
+    .contain {
+        justify-content: center;
+        align-items: center;
+        top: 50%;
+        width: 300px;
+        height: 200x;
+    }
+}
+
