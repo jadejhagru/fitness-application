@@ -19,6 +19,8 @@ body{
     height: 100vh;
     background-size: cover;
     background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     position: relative;
     text-align: center; 
     display: flex;
@@ -112,8 +114,16 @@ header {
 
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 700px) {
+    .wrapper {
+        padding-bottom: 0;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+      }
+
     .nav-area {
-        display: block;
+        justify-content: center;
+        display: inline-block;
     }
 
     .welcome-text h1 {
@@ -127,7 +137,7 @@ header {
 
     #submit-button {
         width: 150px;
-        font-size: 15px;
+        font-size: 10px;
     }
 }
   
