@@ -21,7 +21,7 @@ var dayVariable;
 var selectedDay = "";
 var exerciseGroup;
 
-var exerciseList = [84,46,146,359,360,192,312,136,315,37,36,214,321,41,259,275,338,111,72,203,207];
+var exerciseList = [84,46,146,359,360,192,312,136,315,37,36,263,214,252,321,41,259,275,338,111,72,203,207];
 
 //show modal on profile button click
 $("#profile-button").click(function () {
