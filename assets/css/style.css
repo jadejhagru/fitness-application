@@ -129,11 +129,21 @@ header {
 .save-button:hover, .load-button:hover {
     background: black;
     color: white;
-    transition: 0.5;
+    transition: 0.2s;
 }
 
+.card {
+    background-color: black!important;
+    justify-content: space-between;
+}
+
+.modal-header {
+    color: black!important;
+}
+
+
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
-@media screen and (max-width: 700px)  {
+@media screen and (max-width: 700px) {
     .wrapper {
         padding-bottom: 0;
         justify-content: center;
