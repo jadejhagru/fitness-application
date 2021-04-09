@@ -191,4 +191,9 @@ header {
         color: white;
         cursor: pointer;
     }
+
+    .card {
+        width: 8rem!important;
+        font-size: 10px!important;
+    }
 }
