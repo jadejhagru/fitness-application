@@ -138,36 +138,69 @@ h2 {
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 700px) {
     .wrapper {
-        padding-bottom: 0;
         justify-content: center;
         position: relative;
         width: 100%;
+        padding-bottom: 0%;
       }
 
-    .welcome-text h1 {
-        font-size: 30px;
-        text-align: center;
+    .nav-area {
+        justify-content: center;
+        display: inline-block;
+        margin: 0;
     }
 
-    .welcome-text p {
-        font-size: 15px;
-    }
-
-    #submit-button {
-        width: 150px;
-        font-size: 10px;
-    }
-
-    .contain h2 {
-        font-size: 20px;
+    .nav-area li a {
+        font-size: 12px;
     }
 
     .contain {
-        justify-content: center;
-        align-items: center;
-        top: 50%;
-        width: 300px;
-        height: 200x;
+        position: absolute;
+        top: 200px;
+        left: 20px;
+        width: 220px;
+        height: 220px;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    
+    .height, .weight {
+        text-align: left;
+        margin-left: 100px;
+        font-size: 10px;
+    }
+
+    #h, #w {
+        color: #222f3e;
+        text-align: left;
+        font-size: 10px;
+        font-weight: 200;
+        outline: none;
+        border: none;
+        background: none;
+        border-bottom: 1px solid #363636;
+    }
+
+    #profile-button {
+        width: 80px;
+        padding: 5px 0;
+        text-align: center;
+        margin: 0%;
+        border-radius: 25px;
+        font-size: 10px;
+        font-weight: 150px;
+        border: 2px solid rgb(0, 0, 0);
+        background: black;
+        color: white;
+        cursor: pointer;
+    }
+    
+    #profile-button:hover {
+        background: white;
+        color: black;
+        transition: 0.5s;
     }
 }
-

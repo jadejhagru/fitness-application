@@ -113,10 +113,7 @@ header {
      justify-content: center;
  }
 
- #day{
-     color:black;
- }
- 
+
 .save-button, .load-button {
     width: 150px;
     padding: 15px 0;
@@ -142,6 +139,11 @@ header {
     .nav-area {
         justify-content: center;
         display: inline-block;
+        margin: 0%;
+    }
+
+    .nav-area li a {
+        font-size: 12px;
     }
 
     .welcome-text h1 {
