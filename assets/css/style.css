@@ -23,8 +23,6 @@ body{
     background-attachment: fixed;
     position: relative;
     text-align: center; 
-    display: flex;
-    flex-wrap: wrap;
 }
 
 header {
@@ -111,6 +109,7 @@ header {
     color: black;
     transition: 0.5s;
 }
+
 
 .save-button, .load-button {
     width: 150px;
