@@ -112,6 +112,19 @@ header {
     transition: 0.5s;
 }
 
+.save-button, .load-button {
+    width: 150px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: 150px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 700px) {
     .wrapper {
@@ -140,5 +153,3 @@ header {
         font-size: 10px;
     }
 }
-  
- 
