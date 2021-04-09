@@ -157,12 +157,6 @@ header {
     cursor: pointer;
 }
 
-.category-btn:hover {
-    background: black;
-    color: white;
-    transition: 0.2s;
-}
-
 .exercise-btn {
     width: 150px;
     padding: 15px 0;
@@ -174,12 +168,6 @@ header {
     background: transparent;
     color: white;
     cursor: pointer;
-}
-
-.exercise-btn:hover {
-    background: black;
-    color: white;
-    transition: 0.2s;
 }
 
 .workout-btn {
@@ -206,6 +194,12 @@ header {
     background: transparent;
     color: white;
     cursor: pointer;
+}
+
+.exercise-btn:hover, .category-btn:hover, .workout-btn:hover, .close-btn:hover, .removeButton:hover {
+    background: white;
+    color: black;
+    transition: 0.2s;
 }
 
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
