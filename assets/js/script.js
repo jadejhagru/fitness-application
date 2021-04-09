@@ -21,7 +21,7 @@ var dayVariable;
 var selectedDay = "";
 var exerciseGroup;
 
-var exerciseList = [84,46,146,359,360,192,312,136,315,37,36,263,214,252,321,41,259,275,338,111,72,203,207];
+var exerciseList = [91,46,146,359,360,192,312,136,315,37,36,263,214,252,321,41,259,275,338,111,72,203,207];
 
 //show modal on profile button click
 $("#profile-button").click(function () {
@@ -96,6 +96,8 @@ var showExercises = function (category) {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
+        
+        console.log(data);
         $("#category").empty();
         for (i = 0; i < data.results.length; i++) {
 
@@ -305,16 +307,16 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
             return response.json();
           })
           .then(function (data) {
-            console.log(data);
+
             createExerciseCard();
 
           var gifId = "";
 
           switch(exerciseId) {
-            case '84':
+            case '91':
               gifId = "OgJiGwuIlVvgs"; //abs crunches
               break;
-            case '46':
+            case '74':
               gifId = "kerWKKbyqf1lQIJ2F9"; //bicep curl
               break;
             case '146':
