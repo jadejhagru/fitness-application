@@ -21,6 +21,8 @@ var dayVariable;
 var selectedDay = "";
 var exerciseGroup;
 
+var exerciseList = [84,46,146,359,360,192,312,136,315,37,36,214,321,41,259,275,338,111,72,203,207];
+
 //show modal on profile button click
 $("#profile-button").click(function () {
   $("#profile-modal").show();
@@ -90,17 +92,20 @@ var showCategories = function (exercisecategory) {
 };
 
 var showExercises = function (category) {
-  var apiUrl = "https://wger.de/api/v2/exercise/?format=json&limit=1000" + "&category=" + category + "&equipment=7";
+  var apiUrl = "https://wger.de/api/v2/exercise/?format=json&limit=1000" + "&category=" + category;
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
         $("#category").empty();
         for (i = 0; i < data.results.length; i++) {
+
+          if(exerciseList.includes(data.results[i].id)){
           var exerciseEl = document.createElement("button");
           exerciseEl.classList.add("exercise-btn");
           exerciseEl.textContent = data.results[i].name;
           exerciseEl.setAttribute("id", data.results[i].id);
           $("#category").append(exerciseEl);
+          }
         }
 
         $(".exercise-btn").click(function (event) {
@@ -148,57 +153,6 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
     addExerciseCardData(exerciseId);
     //
   });
-
-  // //Creates set,rep count and rep time selection button---
-  // var buttonName = ["set", "rep-count", "rep-group"];
-  // for (var i = 0; i < 3; i++) {
-  //   exerciseCard.append("<div class=\"dropdown\" id=\"" + buttonName[i] + "-" + exerciseName + "-button\">");
-
-  //   var buttonIdentifier = ("#" + buttonName[i] + "-" + exerciseName);
-
-  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<button id=\"" + buttonName[i] + "-" + exerciseName + "-buttons\"></button>");
-  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").addClass("btn btn-secondary dropdown-toggle");
-  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("type", "button");
-  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("data-bs-toggle", "dropdown");
-  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").attr("aria-expanded", "false");
-
-  //   var buttonText; // button menu name
-
-  //   if (i === 0) {
-  //     buttonText = "Sets";
-  //   }
-  //   else if (i === 1) {
-  //     buttonText = "Rep Count";
-  //   }
-  //   else if (i === 2) {
-  //     buttonText = "Rep Time";
-  //   }
-
-  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").find("button").text(buttonText);
-
-  //   //creates menu options
-  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<ul id=\"" + buttonName[i] + "-" + exerciseName + "-options\"></ul>")
-  //   exerciseCard.find(buttonIdentifier + "-options").addClass("dropdown-menu").attr("aria-labelledby", buttonName[i] + "-" + exerciseName + "-buttons");
-
-  //   if (i === 0) //Note: &#35 is to show the # character in the HTML href attribute
-  //   {
-  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">3</a></li>");
-  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">4</a></li>");
-  //   }
-  //   else if (i === 1) {
-  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">5-8</a></li>");
-  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">8-10</a></li>");
-  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">10-12</a></li>");
-  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">12-15</a></li>");
-  //   }
-  //   else if (i === 2) {
-  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">15</a></li>");
-  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">30</a></i>");
-  //     exerciseCard.find(buttonIdentifier + "-options").append("<li><a class=\"dropdown-item\" href=\"&#35\">60</a></li>");
-  //   }
-
-  //   exerciseCard.find(buttonIdentifier + "-button.dropdown").append("<label class=selected-value></label>");
-  // } //end of for loop
 
   //dismiss main modal when closed
   $(".close-btn").click(function () {
@@ -358,73 +312,73 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
 
           switch(exerciseId) {
             case '84':
-              gifId = "OgJiGwuIlVvgs";
+              gifId = "OgJiGwuIlVvgs"; //abs crunches
               break;
             case '46':
-              gifId = "kerWKKbyqf1lQIJ2F9";
+              gifId = "kerWKKbyqf1lQIJ2F9"; //bicep curl
               break;
             case '146':
-              gifId = "IgwPXREBJ7pF08yjii"
+              gifId = "IgwPXREBJ7pF08yjii" //hammer curl
               break;
             case '359':
-              gifId = "yr17KHeCtKgjGE1SMb";
+              gifId = "yr17KHeCtKgjGE1SMb"; //tricep dip
               break;
             case '360':
-              gifId = "qakKR41BeNAi3eJc8z";
+              gifId = "qakKR41BeNAi3eJc8z"; //tricep extension
             break;
             case '192':
-            gifId = "mkzzJZXQcUZ9SnuKmS";
+            gifId = "mkzzJZXQcUZ9SnuKmS"; //lateral raises
             break;
           case '312':
-            gifId = "7lugb7ObGYiXe";
+            gifId = "7lugb7ObGYiXe"; //shoulder press
           break;
           case '136':
-            gifId = "zc8CJZGmlXi7mCVSac";
+            gifId = "zc8CJZGmlXi7mCVSac"; //front raises
             break;
           case '315':
-            gifId = "G5X63GrrLjjVK";
+            gifId = "G5X63GrrLjjVK"; //shoudler shrugs
           break;
           case '37':
-            gifId = "h24Y1pZIGKXzG";
+            gifId = "h24Y1pZIGKXzG"; //bench press
             break;
           case '36':
-            gifId = "YpklapxVY4Pbb26xM0";
+            gifId = "YpklapxVY4Pbb26xM0"; //bench press barbells
           break;
           case '263':
-            gifId = "mGWBjz74fn404BWUl4";
+            gifId = "mGWBjz74fn404BWUl4"; //push ups
             break;
           case '214':
-            gifId = "3oEhmD1D1r5X9ae9r2";
+            gifId = "3oEhmD1D1r5X9ae9r2"; //leg raises
           break;
-          case '238': //252:
-            gifId = "Pihv2leEf9UKQdloXA";
+          case '252': 
+            gifId = "Pihv2leEf9UKQdloXA"; //plank
             break;
           case '321':
-            gifId = "3xIxeP2udFmbTzg1m1";
+            gifId = "3xIxeP2udFmbTzg1m1"; //side crunches
           break;
           case '41':
-            gifId = "4ssD3no5DCbQs";
+            gifId = "4ssD3no5DCbQs"; //bent over rows
             break;
           case '259':
-            gifId = "HdK972OCf3ahy";
+            gifId = "HdK972OCf3ahy"; //pull up
           break;
           case '275':
-            gifId = "eIZXc5rF0K67nY5iPB";
+            gifId = "eIZXc5rF0K67nY5iPB"; //romanian deadlift
           break;
           case '338':
-            gifId = "13v55Ya4uWsXS ";
+            gifId = "13v55Ya4uWsXS "; //squats
           break;
           case '111':
-            gifId = "5q2b8XsvQaebSthZgi";
+            gifId = "5q2b8XsvQaebSthZgi"; //lunges
           break;
           case '72':
-            gifId = "2wXXVCek2NfkneGqz9";
+            gifId = "2wXXVCek2NfkneGqz9"; //calf raises
           break;
           case '203':
-            gifId = "xZGFptusyerP3GETnz ";
+            gifId = "xZGFptusyerP3GETnz "; //leg raises
           break;
           case '207':
-            gifId = "Ze2gjAuN8s034xHBQ6 ";
+            gifId = "Ze2gjAuN8s034xHBQ6 "; //leg extensionts
           break;
           }
         
@@ -446,17 +400,3 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
           $(".exercise-group").text("Exercise Group:" + exerciseGroup);
     });
 };
-
-//Old
-//Holds all exercises
-// var exerciseList = {
-//   arms: ['bicepCurls','hammerCurls','tricepDip','tricepExtension'],
-//   shoulders: ['lateralRaises','shoulderPressDumbbells','lateralFrontRaises','shoulderShrug'],
-
-//   chest: ['benchPress','inclineDumbbellPress','pushups'],
-//   abs: ['legRaises','plank','sideCrunch'],
-//   back: ['bentoverDumbbellRows','pullUps','hipRaiseLying','longPulleyRow'],
-
-//   legs: ['romanianDeadlift','squats','dumbbellLungesStanding'],
-//   calves: ['calfRaises','legCurl','legExtenstion']
-// }
