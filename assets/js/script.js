@@ -129,20 +129,20 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
   exerciseName = exerciseName.replaceAll(" ", "-");
   exerciseName = exerciseName.replaceAll(",", "-");
   exerciseName = exerciseName.toLowerCase();
-  exerciseCard.append("<button type=\"button\" class=\"removeButton "+ exerciseName +"\">X</button>");
+  exerciseCard.append("<button type=\"button\" class=\"removeButton " + exerciseName + "\">X</button>");
 
-  $(".removeButton").click(function () { 
-  $(this).parent().find("#"+exerciseId).remove(); 
+  $(".removeButton").click(function () {
+    $(this).parent().find("#" + exerciseId).remove();
 
-  if (!($(this).parent().find("buttons")).prevObject[0].children[1].val) {
-  $(this).parent().find(".card-text").append("<p class=\"card-text\">Rest<span stlye=\"color: white;\"><i class=\"fas fa-bed\" aria-hidden=\"true\"></i></span></p>");
-  };
+    if (!($(this).parent().find("buttons")).prevObject[0].children[1].val) {
+      $(this).parent().find(".card-text").append("<p class=\"card-text\">Rest<span stlye=\"color: white;\"><i class=\"fas fa-bed\" aria-hidden=\"true\"></i></span></p>");
+    };
 
-  $(this).remove();
+    $(this).remove();
   });
 
-   //JADE STUFF
-   $("#"+exerciseId+".workout-btn").click(function () {
+  //JADE STUFF
+  $("#" + exerciseId + ".workout-btn").click(function () {
     $("#workout-modal").show();
     //should only trigger one exercise button click
     addExerciseCardData(exerciseId);
@@ -218,21 +218,21 @@ $(".load-button").click(function () {
 });
 
 var saveSchedule = function (exerciseCard, exerciseId) {
-    if (exerciseCard[0].id == "sunday") {
-      workout.sunday.push(exerciseId);
-    } else if (exerciseCard[0].id == "monday") {
-      workout.monday.push(exerciseId);
-    } else if (exerciseCard[0].id == "tuesday") {
-      workout.tuesday.push(exerciseId);
-    } else if (exerciseCard[0].id == "wednesday") {
-      workout.wednesday.push(exerciseId);
-    } else if (exerciseCard[0].id == "thursday") {
-      workout.thursday.push(exerciseId);
-    } else if (exerciseCard[0].id == "friday") {
-      workout.friday.push(exerciseId);
-    } else if (exerciseCard[0].id == "saturday") {
-      workout.saturday.push(exerciseId);
-    }
+  if (exerciseCard[0].id == "sunday") {
+    workout.sunday.push(exerciseId);
+  } else if (exerciseCard[0].id == "monday") {
+    workout.monday.push(exerciseId);
+  } else if (exerciseCard[0].id == "tuesday") {
+    workout.tuesday.push(exerciseId);
+  } else if (exerciseCard[0].id == "wednesday") {
+    workout.wednesday.push(exerciseId);
+  } else if (exerciseCard[0].id == "thursday") {
+    workout.thursday.push(exerciseId);
+  } else if (exerciseCard[0].id == "friday") {
+    workout.friday.push(exerciseId);
+  } else if (exerciseCard[0].id == "saturday") {
+    workout.saturday.push(exerciseId);
+  }
 };
 
 var saveWorkout = function () {
@@ -241,66 +241,61 @@ var saveWorkout = function () {
 
 var getExerciseName = function (loadExerciseId, day) {
   fetch(
-    'https://wger.de/api/v2/exercise/?format=json&limit=1000'
+    "https://wger.de/api/v2/exerciseinfo/" + loadExerciseId
   )
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      //checks if exercise id is listed in the API
-      for (i = 0; i < data.results.length; i++) {
-        if (loadExerciseId == data.results[i].id) {
-          createExerciseButton(data.results[i].name, loadExerciseId, day);
-        }
-      }
-    });
-}
+      createExerciseButton(data.name, loadExerciseId, day);
+    }
+)};
 
-var loadWorkout = function() {
+var loadWorkout = function () {
 
   var loadedWorkout = JSON.parse(localStorage.getItem("workout"));
 
-    for (i = 0; i < loadedWorkout.sunday.length; i++) {
-      if(loadedWorkout.sunday[i]) {
+  for (i = 0; i < loadedWorkout.sunday.length; i++) {
+    if (loadedWorkout.sunday[i]) {
       getExerciseName(loadedWorkout.sunday[i], "sunday");
-      }
     }
+  }
 
-    for (i = 0; i < loadedWorkout.monday.length; i++) {
-      if(loadedWorkout.monday[i]) {
-        getExerciseName(loadedWorkout.monday[i], "monday");
-      }
+  for (i = 0; i < loadedWorkout.monday.length; i++) {
+    if (loadedWorkout.monday[i]) {
+      getExerciseName(loadedWorkout.monday[i], "monday");
     }
+  }
 
-    for (i = 0; i < loadedWorkout.tuesday.length; i++) {
-      if(loadedWorkout.tuesday[i]) {
-        getExerciseName(loadedWorkout.tuesday[i], "tuesday");
-      }
+  for (i = 0; i < loadedWorkout.tuesday.length; i++) {
+    if (loadedWorkout.tuesday[i]) {
+      getExerciseName(loadedWorkout.tuesday[i], "tuesday");
     }
+  }
 
-    for (i = 0; i < loadedWorkout.wednesday.length; i++) {
-      if(loadedWorkout.wednesday[i]) {
-        getExerciseName(loadedWorkout.wednesday[i], "wednesday");
-      }
+  for (i = 0; i < loadedWorkout.wednesday.length; i++) {
+    if (loadedWorkout.wednesday[i]) {
+      getExerciseName(loadedWorkout.wednesday[i], "wednesday");
     }
+  }
 
-    for (i = 0; i < loadedWorkout.thursday.length; i++) {
-      if(loadedWorkout.thursday[i]) {
-        getExerciseName(loadedWorkout.thursday[i], "thursday");
-      }
+  for (i = 0; i < loadedWorkout.thursday.length; i++) {
+    if (loadedWorkout.thursday[i]) {
+      getExerciseName(loadedWorkout.thursday[i], "thursday");
     }
+  }
 
-    for (i = 0; i < loadedWorkout.friday.length; i++) {
-      if(loadedWorkout.friday[i]) {
-        getExerciseName(loadedWorkout.friday[i], "friday");
-      }
+  for (i = 0; i < loadedWorkout.friday.length; i++) {
+    if (loadedWorkout.friday[i]) {
+      getExerciseName(loadedWorkout.friday[i], "friday");
     }
+  }
 
-    for (i = 0; i < loadedWorkout.saturday.length; i++) {
-      if(loadedWorkout.saturday[i]) {
-        getExerciseName(loadedWorkout.saturday[i], "saturday");
-      }
+  for (i = 0; i < loadedWorkout.saturday.length; i++) {
+    if (loadedWorkout.saturday[i]) {
+      getExerciseName(loadedWorkout.saturday[i], "saturday");
     }
+  }
 
 };
 
@@ -364,25 +359,20 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
 //appends data content to modal card for exercises
 var addExerciseCardData = function (exerciseId) {
   fetch(
-    'https://wger.de/api/v2/exercise/?format=json&limit=1000'
+    "https://wger.de/api/v2/exerciseinfo/" + exerciseId
   )
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-
+      console.log(data);
       createExerciseCard();
 
       //checks if exercise id is listed in the API
-      for (i = 0; i < data.results.length; i++) {
-
-        if (exerciseId == data.results[i].id) {
-          $(".exercise-name").text(data.results[i].name);
-          $(".exercise-graphic").attr('alt', data.results[i].name);
-          $(".exercise-description").append(data.results[i].description);
+          $(".exercise-name").text(data.name);
+          $(".exercise-graphic").attr('alt', data.name);
+          $(".exercise-description").append(data.description);
           $(".exercise-group").text("Exercise Group:" + exerciseGroup);
-        }
-      }
     });
 
   // //giphy fetch will go here
