@@ -134,11 +134,14 @@ header {
 
 .card {
     background-color: black!important;
-    justify-content: space-between;
+    opacity: 80%;
+    margin: .75rem;
+    width: 15rem!important;
 }
 
-.modal-header {
-    color: black!important;
+.modal-dialog, .modal-body, .modal-content {
+    background-color: black!important;
+    opacity: 90%;
 }
 
 
