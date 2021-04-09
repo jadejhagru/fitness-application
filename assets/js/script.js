@@ -324,20 +324,6 @@ var loadBmi = function () {
 
 loadBmi();
 
-// //Old
-// //Holds all exercises
-// var exerciseList = {
-//   arms: ['bicepCurls','hammerCurls','tricepDip','tricepExtension'],
-//   shoulders: ['lateralRaises','shoulderPressDumbbells','lateralFrontRaises','shoulderShrug'],
-
-//   chest: ['benchPress','inclineDumbbellPress','pushups'],
-//   abs: [absCrunches,'legRaises','plank','sideCrunch'],
-//   back: ['bentoverDumbbellRows','pullUps','hipRaiseLying','longPulleyRow'],
-
-//   legs: ['romanianDeadlift','squats','dumbbellLungesStanding'],
-//   calves: ['calfRaises','legCurl','legExtenstion']
-// }
-
 //Creates exercise card object - needs be to scoped to the exercise option selection loop
 var createExerciseCard = function () //dayId is the section it goes to in the day column
 {
@@ -381,19 +367,37 @@ var addExerciseCardData = function (exerciseId) {
           $(".exercise-graphic").attr('alt', data.results[i].name);
           $(".exercise-description").append(data.results[i].description);
           $(".exercise-group").text("Exercise Group:" + exerciseGroup);
+          $(".exercise-graphic.").attr('src',exerciseList());
         }
       }
     });
-
-  // //giphy fetch will go here
-  // fetch(
-  //   'https://api.giphy.com/v1/gifs/OgJiGwuIlVvgs?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
-  // )
-  //   .then(function(response) {
-  //     return response.json();
-  //   })
-  //   .then(function(response) {
-
-  //     $(".exercise-graphic.").attr('src',response.data.images.downsized_large.url);
-  // })
 };
+
+//Old
+//Holds all exercises
+var exerciseList = {
+  arms: ['bicepCurls','hammerCurls','tricepDip','tricepExtension'],
+  shoulders: ['lateralRaises','shoulderPressDumbbells','lateralFrontRaises','shoulderShrug'],
+
+  chest: ['benchPress','inclineDumbbellPress','pushups'],
+  abs: [absCrunches,'legRaises','plank','sideCrunch'],
+  back: ['bentoverDumbbellRows','pullUps','hipRaiseLying','longPulleyRow'],
+
+  legs: ['romanianDeadlift','squats','dumbbellLungesStanding'],
+  calves: ['calfRaises','legCurl','legExtenstion']
+}
+
+var exerciseList = function (workoutId)
+{
+
+  
+  fetch(
+    'https://api.giphy.com/v1/gifs/'+OgJiGwuIlVvgs+'?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
+  )
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(response) {
+      return response.data.images.downsized_large.url;
+  })
+}
