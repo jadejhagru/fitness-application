@@ -141,9 +141,72 @@ header {
 
 .modal-dialog, .modal-body, .modal-content {
     background-color: black!important;
-    opacity: 90%;
+    opacity: 98%;
 }
 
+.category-btn {
+    width: 150px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.category-btn:hover {
+    background: black;
+    color: white;
+    transition: 0.2s;
+}
+
+.exercise-btn {
+    width: 150px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.exercise-btn:hover {
+    background: black;
+    color: white;
+    transition: 0.2s;
+}
+
+.workout-btn {
+    width: 200px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 15px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.close-btn {
+    width: 50px;
+    height: 50px;
+    padding: 10px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
 
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 700px) {
@@ -161,7 +224,7 @@ header {
     }
 
     .nav-area li a {
-        font-size: 12px;
+        font-size: 15px;
     }
 
     .welcome-text h1 {
@@ -185,7 +248,7 @@ header {
         margin: 20px 10px;
         border-radius: 25px;
         font-weight: 150px;
-        font-size: 10px;
+        font-size: 14px;
         border: 2px solid white;
         background: transparent;
         color: white;
@@ -194,6 +257,6 @@ header {
 
     .card {
         width: 8rem!important;
-        font-size: 10px!important;
+        font-size: 12px!important;
     }
 }
