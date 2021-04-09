@@ -342,57 +342,121 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
   $(".modal-body").find(".newdiv").append("<li>Remember to rest between every set for 40 secs to 1 min</li>")
 }
 
-//appends data content to modal card for exercises
-var addExerciseCardData = function (exerciseId) {
-  fetch(
-    "https://wger.de/api/v2/exerciseinfo/" + exerciseId
-  )
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      createExerciseCard();
+      //appends data content to modal card for exercises
+      var addExerciseCardData = function (exerciseId) {
+        fetch(
+          "https://wger.de/api/v2/exerciseinfo/" + exerciseId
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data);
+            createExerciseCard();
+
+          var gifId = "";
+
+          switch(exerciseId) {
+            case '84':
+              gifId = "OgJiGwuIlVvgs";
+              break;
+            case '46':
+              gifId = "kerWKKbyqf1lQIJ2F9";
+              break;
+            case '146':
+              gifId = "IgwPXREBJ7pF08yjii"
+              break;
+            case '359':
+              gifId = "yr17KHeCtKgjGE1SMb";
+              break;
+            case '360':
+              gifId = "qakKR41BeNAi3eJc8z";
+            break;
+            case '192':
+            gifId = "mkzzJZXQcUZ9SnuKmS";
+            break;
+          case '312':
+            gifId = "7lugb7ObGYiXe";
+          break;
+          case '136':
+            gifId = "zc8CJZGmlXi7mCVSac";
+            break;
+          case '315':
+            gifId = "G5X63GrrLjjVK";
+          break;
+          case '37':
+            gifId = "h24Y1pZIGKXzG";
+            break;
+          case '36':
+            gifId = "YpklapxVY4Pbb26xM0";
+          break;
+          case '263':
+            gifId = "mGWBjz74fn404BWUl4";
+            break;
+          case '214':
+            gifId = "3oEhmD1D1r5X9ae9r2";
+          break;
+          case '238': //252:
+            gifId = "Pihv2leEf9UKQdloXA";
+            break;
+          case '321':
+            gifId = "3xIxeP2udFmbTzg1m1";
+          break;
+          case '41':
+            gifId = "4ssD3no5DCbQs";
+            break;
+          case '259':
+            gifId = "HdK972OCf3ahy";
+          break;
+          case '275':
+            gifId = "eIZXc5rF0K67nY5iPB";
+          break;
+          case '338':
+            gifId = "13v55Ya4uWsXS ";
+          break;
+          case '111':
+            gifId = "5q2b8XsvQaebSthZgi";
+          break;
+          case '72':
+            gifId = "2wXXVCek2NfkneGqz9";
+          break;
+          case '203':
+            gifId = "xZGFptusyerP3GETnz ";
+          break;
+          case '207':
+            gifId = "Ze2gjAuN8s034xHBQ6 ";
+          break;
+          }
+        
+        fetch(
+          'https://api.giphy.com/v1/gifs/' + gifId + '?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
+        )
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(response) {
+
+            $(".exercise-graphic").attr("src",response.data.images.downsized_large.url);
+        })
 
       //checks if exercise id is listed in the API
           $(".exercise-name").text(data.name);
           $(".exercise-graphic").attr('alt', data.name);
           $(".exercise-description").append(data.description);
           $(".exercise-group").text("Exercise Group:" + exerciseGroup);
-<<<<<<< HEAD
-          $(".exercise-graphic.").attr('src',exerciseList());
-        }
-      }
-=======
->>>>>>> b06a52f0a392bcda3ecda54f8c9c3ac6db2d6cd1
     });
 };
 
 //Old
 //Holds all exercises
-var exerciseList = {
-  arms: ['bicepCurls','hammerCurls','tricepDip','tricepExtension'],
-  shoulders: ['lateralRaises','shoulderPressDumbbells','lateralFrontRaises','shoulderShrug'],
+// var exerciseList = {
+//   arms: ['bicepCurls','hammerCurls','tricepDip','tricepExtension'],
+//   shoulders: ['lateralRaises','shoulderPressDumbbells','lateralFrontRaises','shoulderShrug'],
 
-  chest: ['benchPress','inclineDumbbellPress','pushups'],
-  abs: [absCrunches,'legRaises','plank','sideCrunch'],
-  back: ['bentoverDumbbellRows','pullUps','hipRaiseLying','longPulleyRow'],
+//   chest: ['benchPress','inclineDumbbellPress','pushups'],
+//   abs: ['legRaises','plank','sideCrunch'],
+//   back: ['bentoverDumbbellRows','pullUps','hipRaiseLying','longPulleyRow'],
 
-  legs: ['romanianDeadlift','squats','dumbbellLungesStanding'],
-  calves: ['calfRaises','legCurl','legExtenstion']
-}
-
-var exerciseList = function (workoutId)
-{
-
-  
-  fetch(
-    'https://api.giphy.com/v1/gifs/'+OgJiGwuIlVvgs+'?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
-  )
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(response) {
-      return response.data.images.downsized_large.url;
-  })
-}
+//   legs: ['romanianDeadlift','squats','dumbbellLungesStanding'],
+//   calves: ['calfRaises','legCurl','legExtenstion']
+// }
