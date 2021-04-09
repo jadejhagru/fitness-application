@@ -21,7 +21,7 @@ var dayVariable;
 var selectedDay = "";
 var exerciseGroup;
 
-var exerciseList = [91,46,146,359,360,192,312,136,315,37,36,263,214,252,321,41,259,275,338,111,72,203,207];
+//var exerciseList = [91,46,146,359,360,192,312,136,315,37,36,263,214,252,321,41,259,275,338,111,72,203,207];
 
 //show modal on profile button click
 $("#profile-button").click(function () {
@@ -92,22 +92,23 @@ var showCategories = function (exercisecategory) {
 };
 
 var showExercises = function (category) {
-  var apiUrl = "https://wger.de/api/v2/exercise/?format=json&limit=1000" + "&category=" + category;
+  var apiUrl = "https://wger.de/api/v2/exercise/?limit=10&category=" + category
+
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        
+
         console.log(data);
         $("#category").empty();
         for (i = 0; i < data.results.length; i++) {
 
-          if(exerciseList.includes(data.results[i].id)){
+          //if(exerciseList.includes(data.results[i].id)){
           var exerciseEl = document.createElement("button");
           exerciseEl.classList.add("exercise-btn");
           exerciseEl.textContent = data.results[i].name;
           exerciseEl.setAttribute("id", data.results[i].id);
           $("#category").append(exerciseEl);
-          }
+         // }
         }
 
         $(".exercise-btn").click(function (event) {
@@ -298,107 +299,105 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
   $(".modal-body").find(".newdiv").append("<li>Remember to rest between every set for 40 secs to 1 min</li>")
 }
 
-      //appends data content to modal card for exercises
-      var addExerciseCardData = function (exerciseId) {
-        fetch(
-          "https://wger.de/api/v2/exerciseinfo/" + exerciseId
-        )
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (data) {
-
-            createExerciseCard();
-
-          var gifId = "";
-
-          switch(exerciseId) {
-            case '91':
-              gifId = "OgJiGwuIlVvgs"; //abs crunches
-              break;
-            case '74':
-              gifId = "kerWKKbyqf1lQIJ2F9"; //bicep curl
-              break;
-            case '146':
-              gifId = "IgwPXREBJ7pF08yjii" //hammer curl
-              break;
-            case '359':
-              gifId = "yr17KHeCtKgjGE1SMb"; //tricep dip
-              break;
-            case '360':
-              gifId = "qakKR41BeNAi3eJc8z"; //tricep extension
-            break;
-            case '192':
-            gifId = "mkzzJZXQcUZ9SnuKmS"; //lateral raises
-            break;
-          case '312':
-            gifId = "7lugb7ObGYiXe"; //shoulder press
-          break;
-          case '136':
-            gifId = "zc8CJZGmlXi7mCVSac"; //front raises
-            break;
-          case '315':
-            gifId = "G5X63GrrLjjVK"; //shoudler shrugs
-          break;
-          case '37':
-            gifId = "h24Y1pZIGKXzG"; //bench press
-            break;
-          case '36':
-            gifId = "YpklapxVY4Pbb26xM0"; //bench press barbells
-          break;
-          case '263':
-            gifId = "mGWBjz74fn404BWUl4"; //push ups
-            break;
-          case '214':
-            gifId = "3oEhmD1D1r5X9ae9r2"; //leg raises
-          break;
-          case '252': 
-            gifId = "Pihv2leEf9UKQdloXA"; //plank
-            break;
-          case '321':
-            gifId = "3xIxeP2udFmbTzg1m1"; //side crunches
-          break;
-          case '41':
-            gifId = "4ssD3no5DCbQs"; //bent over rows
-            break;
-          case '259':
-            gifId = "HdK972OCf3ahy"; //pull up
-          break;
-          case '275':
-            gifId = "eIZXc5rF0K67nY5iPB"; //romanian deadlift
-          break;
-          case '338':
-            gifId = "13v55Ya4uWsXS "; //squats
-          break;
-          case '111':
-            gifId = "5q2b8XsvQaebSthZgi"; //lunges
-          break;
-          case '72':
-            gifId = "2wXXVCek2NfkneGqz9"; //calf raises
-          break;
-          case '203':
-            gifId = "xZGFptusyerP3GETnz "; //leg raises
-          break;
-          case '207':
-            gifId = "Ze2gjAuN8s034xHBQ6 "; //leg extensionts
-          break;
-          }
-        
-        fetch(
-          'https://api.giphy.com/v1/gifs/' + gifId + '?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf'
-        )
-          .then(function(response) {
-            return response.json();
-          })
-          .then(function(response) {
-
-            $(".exercise-graphic").attr("src",response.data.images.downsized_large.url);
+    //appends data content to modal card for exercises
+    var addExerciseCardData = function (exerciseId) {
+      fetch(
+        "https://wger.de/api/v2/exerciseinfo/" + exerciseId
+      )
+        .then(function (response) {
+          return response.json();
         })
+        .then(function (data) {
 
-      //checks if exercise id is listed in the API
-          $(".exercise-name").text(data.name);
-          $(".exercise-graphic").attr('alt', data.name);
-          $(".exercise-description").append(data.description);
-          $(".exercise-group").text("Exercise Group:" + exerciseGroup);
-    });
+          createExerciseCard();
+
+        // switch(exerciseId) {
+        //   case '91':
+        //     gifId = "OgJiGwuIlVvgs"; //abs crunches
+        //     break;
+        //   case '81':
+        //     gifId = "kerWKKbyqf1lQIJ2F9"; //bicep curl
+        //     break;
+        //   case '146':
+        //     gifId = "IgwPXREBJ7pF08yjii" //hammer curl
+        //     break;
+        //   case '359':
+        //     gifId = "yr17KHeCtKgjGE1SMb"; //tricep dip
+        //     break;
+        //   case '360':
+        //     gifId = "qakKR41BeNAi3eJc8z"; //tricep extension
+        //   break;
+        //   case '192':
+        //   gifId = "mkzzJZXQcUZ9SnuKmS"; //lateral raises
+        //   break;
+        // case '312':
+        //   gifId = "7lugb7ObGYiXe"; //shoulder press
+        // break;
+        // case '136':
+        //   gifId = "zc8CJZGmlXi7mCVSac"; //front raises
+        //   break;
+        // case '315':
+        //   gifId = "G5X63GrrLjjVK"; //shoudler shrugs
+        // break;
+        // case '37':
+        //   gifId = "h24Y1pZIGKXzG"; //bench press
+        //   break;
+        // case '36':
+        //   gifId = "YpklapxVY4Pbb26xM0"; //bench press barbells
+        // break;
+        // case '263':
+        //   gifId = "mGWBjz74fn404BWUl4"; //push ups
+        //   break;
+        // case '214':
+        //   gifId = "3oEhmD1D1r5X9ae9r2"; //leg raises
+        // break;
+        // case '252': 
+        //   gifId = "Pihv2leEf9UKQdloXA"; //plank
+        //   break;
+        // case '321':
+        //   gifId = "3xIxeP2udFmbTzg1m1"; //side crunches
+        // break;
+        // case '41':
+        //   gifId = "4ssD3no5DCbQs"; //bent over rows
+        //   break;
+        // case '259':
+        //   gifId = "HdK972OCf3ahy"; //pull up
+        // break;
+        // case '275':
+        //   gifId = "eIZXc5rF0K67nY5iPB"; //romanian deadlift
+        // break;
+        // case '338':
+        //   gifId = "13v55Ya4uWsXS "; //squats
+        // break;
+        // case '111':
+        //   gifId = "5q2b8XsvQaebSthZgi"; //lunges
+        // break;
+        // case '72':
+        //   gifId = "2wXXVCek2NfkneGqz9"; //calf raises
+        // break;
+        // case '203':
+        //   gifId = "xZGFptusyerP3GETnz "; //leg raises
+        // break;
+        // case '207':
+        //   gifId = "Ze2gjAuN8s034xHBQ6 "; //leg extensionts
+        // break;
+        // }
+      
+      fetch(
+        'https://api.giphy.com/v1/gifs/search?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf&q='+ data.name + "&rating=pg13"
+      )
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(response) {
+
+          $(".exercise-graphic").attr("src",response.data[0].images.downsized_large.url);
+      })
+
+    //checks if exercise id is listed in the API
+        $(".exercise-name").text(data.name);
+        $(".exercise-graphic").attr('alt', data.name);
+        $(".exercise-description").append(data.description);
+        $(".exercise-group").text("Exercise Group:" + exerciseGroup);
+  });
 };
