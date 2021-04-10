@@ -280,7 +280,6 @@ loadBmi();
 var createExerciseCard = function () //dayId is the section it goes to in the day column
 {
   //actual card code starts here 
-  //$("#workout-modal").remove();
   $(".modal-body").append("<div class=\"newdiv\"></div>");
 
   //Card image/GIF
@@ -310,81 +309,9 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
         .then(function (data) {
 
           createExerciseCard();
-
-        // switch(exerciseId) {
-        //   case '91':
-        //     gifId = "OgJiGwuIlVvgs"; //abs crunches
-        //     break;
-        //   case '81':
-        //     gifId = "kerWKKbyqf1lQIJ2F9"; //bicep curl
-        //     break;
-        //   case '146':
-        //     gifId = "IgwPXREBJ7pF08yjii" //hammer curl
-        //     break;
-        //   case '359':
-        //     gifId = "yr17KHeCtKgjGE1SMb"; //tricep dip
-        //     break;
-        //   case '360':
-        //     gifId = "qakKR41BeNAi3eJc8z"; //tricep extension
-        //   break;
-        //   case '192':
-        //   gifId = "mkzzJZXQcUZ9SnuKmS"; //lateral raises
-        //   break;
-        // case '312':
-        //   gifId = "7lugb7ObGYiXe"; //shoulder press
-        // break;
-        // case '136':
-        //   gifId = "zc8CJZGmlXi7mCVSac"; //front raises
-        //   break;
-        // case '315':
-        //   gifId = "G5X63GrrLjjVK"; //shoudler shrugs
-        // break;
-        // case '37':
-        //   gifId = "h24Y1pZIGKXzG"; //bench press
-        //   break;
-        // case '36':
-        //   gifId = "YpklapxVY4Pbb26xM0"; //bench press barbells
-        // break;
-        // case '263':
-        //   gifId = "mGWBjz74fn404BWUl4"; //push ups
-        //   break;
-        // case '214':
-        //   gifId = "3oEhmD1D1r5X9ae9r2"; //leg raises
-        // break;
-        // case '252': 
-        //   gifId = "Pihv2leEf9UKQdloXA"; //plank
-        //   break;
-        // case '321':
-        //   gifId = "3xIxeP2udFmbTzg1m1"; //side crunches
-        // break;
-        // case '41':
-        //   gifId = "4ssD3no5DCbQs"; //bent over rows
-        //   break;
-        // case '259':
-        //   gifId = "HdK972OCf3ahy"; //pull up
-        // break;
-        // case '275':
-        //   gifId = "eIZXc5rF0K67nY5iPB"; //romanian deadlift
-        // break;
-        // case '338':
-        //   gifId = "13v55Ya4uWsXS "; //squats
-        // break;
-        // case '111':
-        //   gifId = "5q2b8XsvQaebSthZgi"; //lunges
-        // break;
-        // case '72':
-        //   gifId = "2wXXVCek2NfkneGqz9"; //calf raises
-        // break;
-        // case '203':
-        //   gifId = "xZGFptusyerP3GETnz "; //leg raises
-        // break;
-        // case '207':
-        //   gifId = "Ze2gjAuN8s034xHBQ6 "; //leg extensionts
-        // break;
-        // }
       
       fetch(
-        'https://www.googleapis.com/youtube/v3/search/?q='+ data.name + '&key=AIzaSyD_e2KrYBug3VBuxVAZzfTZGcghcrrLPdU'
+        'https://www.googleapis.com/youtube/v3/search/?q='+ data.name + '%20exercise&key=AIzaSyD_e2KrYBug3VBuxVAZzfTZGcghcrrLPdU'
       )
         .then(function(response) {
           return response.json();
