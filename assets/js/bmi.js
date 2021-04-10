@@ -16,21 +16,6 @@ function BMI() {
  //   }
 };
 
-var loadProfile = function () {
-    var loadedProfile = JSON.parse(localStorage.getItem("userProfile"));
-    if (loadedProfile) {
-        h = loadedProfile.Height;
-        w = loadedProfile.Weight;
-        document.getElementById("h").setAttribute("placeholder", loadedProfile.Height);
-        document.getElementById("w").setAttribute("placeholder", loadedProfile.Weight);
-    }
-    else {
-        return;
-    }
-};
-
 var saveBmi = function (bmiFinal) {
     localStorage.setItem("bmi", bmiFinal);
 };
-
-loadProfile();
