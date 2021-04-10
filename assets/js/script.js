@@ -1,9 +1,4 @@
-//globally call userProfile as an object with empty attributes
-var userProfile = {
-  Weight: "",
-  Height: ""
-};
-
+//storage variable 
 var workout = {
   sunday: [],
   monday: [],
@@ -18,9 +13,11 @@ var workout = {
 var selectedExerciseId;
 var dayVariable;
 
+//globally stores the selected day and exercise group
 var selectedDay = "";
 var exerciseGroup;
 
+//filter exercises
 var exerciseList = 
 [345,91,544,303,125,238,176,95, /*abs*/
   344, 81, 82, 86, 771, 195, 279, 89, /*arms*/
@@ -31,36 +28,13 @@ var exerciseList =
   123, 119, 319, 148, 233, 359, 311, 237, /*shoulders*/
 ];
 
-//show modal on profile button click
-$("#profile-button").click(function () {
-  $("#profile-modal").show();
-});
-
-//dismiss main modal when closed
-$(".close-btn").click(function () {
-  $("#profile-modal").hide();
-});
-
-//send user stats to userProfile object
-$("#submit-button").click(function () {
-  var userWeight = $("input[id='weight'").val();
-  var userHeight = $("input[id='height'").val();
-  userProfile.Weight = userWeight;
-  userProfile.Height = userHeight;
-  saveProfile(userProfile);
-});
-
-//save the user's profile to localstorage
-var saveProfile = function (userProfile) {
-  localStorage.setItem("userProfile", JSON.stringify(userProfile));
-};
-
+//close exercise modal
 $(".close-btn").click(function () {
   $("#exercise-modal").hide();
   $("#category").empty();
 });
 
-//add exercise
+//add exercise to day card
 $("span.add").click(function () {
 
   selectedDay = $(this).parent().siblings().text(); //used to append buttons
@@ -99,6 +73,7 @@ var showCategories = function (exercisecategory) {
   })
 };
 
+//show exercise list based on selected category
 var showExercises = function (category) {
 
   var apiUrl = "https://wger.de/api/v2/exercise/?limit=55&category=" + category + "&language=2"
@@ -132,6 +107,7 @@ var showExercises = function (category) {
   })
 };
 
+//create exercise buttons in each day
 var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
 
   var exerciseCard = $("#" + dayVar);
@@ -147,6 +123,7 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
   exerciseName = exerciseName.toLowerCase();
   exerciseCard.append("<button type=\"button\" class=\"removeButton " + exerciseName + "\">X</button>");
 
+  //delete exercise  
   $(".removeButton").click(function () {
     $(this).parent().find("#" + exerciseId).remove();
 
@@ -157,12 +134,10 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
     $(this).remove();
   });
 
-  //JADE STUFF
+  //add information to the modal for selected exercise
   $("#" + exerciseId + ".workout-btn").click(function () {
     $("#workout-modal").show();
-    //should only trigger one exercise button click
     addExerciseCardData(exerciseId);
-    //
   });
 
   //dismiss main modal when closed
@@ -171,17 +146,21 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
     $(".newdiv").remove();
   });
 
+  //call save workout function
   saveSchedule(exerciseCard, exerciseId);
 };
 
+//save workout on button click
 $(".save-button").click(function () {
   saveWorkout();
 });
 
+//load workout on button click
 $(".load-button").click(function () {
   loadWorkout();
 });
 
+//filters exerciseId to stored day
 var saveSchedule = function (exerciseCard, exerciseId) {
   if (exerciseCard[0].id == "sunday") {
     workout.sunday.push(exerciseId);
@@ -200,10 +179,12 @@ var saveSchedule = function (exerciseCard, exerciseId) {
   }
 };
 
+//save workouts to local storage
 var saveWorkout = function () {
   localStorage.setItem("workout", JSON.stringify(workout));
 }
 
+//find loaded exercise name
 var getExerciseName = function (loadExerciseId, day) {
   fetch(
     "https://wger.de/api/v2/exerciseinfo/" + loadExerciseId
@@ -216,10 +197,11 @@ var getExerciseName = function (loadExerciseId, day) {
     }
 )};
 
+//load the workout schedule
 var loadWorkout = function () {
 
   var loadedWorkout = JSON.parse(localStorage.getItem("workout"));
-
+  //loop through the object list to find the corresponding day
   for (i = 0; i < loadedWorkout.sunday.length; i++) {
     if (loadedWorkout.sunday[i]) {
       getExerciseName(loadedWorkout.sunday[i], "sunday");
@@ -282,15 +264,13 @@ var loadBmi = function () {
   }
 };
 
-loadBmi();
-
-//Creates exercise card object - needs be to scoped to the exercise option selection loop
-var createExerciseCard = function () //dayId is the section it goes to in the day column
+//Creates exercise card element
+var createExerciseCard = function () 
 {
-  //actual card code starts here 
+  
   $(".modal-body").append("<div class=\"newdiv\"></div>");
 
-  //Card image/GIF
+  //Card video
   $(".modal-body").find(".newdiv").append("<iframe class=\"exercise-graphic\"></iframe>");
 
   //Card name
@@ -317,7 +297,7 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
         .then(function (data) {
 
           createExerciseCard();
-      
+      //search for YouTube videos and grab the first response
       fetch(
         'https://www.googleapis.com/youtube/v3/search/?q='+ data.name + '%20exercise&key=AIzaSyD_e2KrYBug3VBuxVAZzfTZGcghcrrLPdU'
       )
@@ -325,7 +305,7 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
           return response.json();
         })
         .then(function(response) {
-
+          //iframe API call to add iframe to page
           $(".exercise-graphic").attr("src",'https://www.youtube.com/embed/' + response.items[0].id.videoId) + '?enablejsapi=1';
       })
 
@@ -336,3 +316,6 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
         $(".exercise-group").text("Exercise Group:" + exerciseGroup);
   });
 };
+
+//load BMI on page load
+loadBmi();
