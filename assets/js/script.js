@@ -21,7 +21,15 @@ var dayVariable;
 var selectedDay = "";
 var exerciseGroup;
 
-//var exerciseList = [91,46,146,359,360,192,312,136,315,37,36,263,214,252,321,41,259,275,338,111,72,203,207];
+var exerciseList = 
+[345,91,544,303,125,238,176,95, /*abs*/
+  344, 81, 82, 86, 771, 195, 279, 89, /*arms*/
+  362, 803, 105, 340, 107, 278, 424, 548, /*back*/
+  308, 776, 104, 103, 411, 102, /*calves*/
+  307, 192, 354, 98, 260, 122, 210, 25, /*chest*/
+  111, 300, 112, 408, 432, 810, 117, 177, /*legs*/
+  123, 119, 319, 148, 233, 359, 311, 237, /*shoulders*/
+];
 
 //show modal on profile button click
 $("#profile-button").click(function () {
@@ -92,23 +100,23 @@ var showCategories = function (exercisecategory) {
 };
 
 var showExercises = function (category) {
-  var apiUrl = "https://wger.de/api/v2/exercise/?limit=10&category=" + category
+
+  var apiUrl = "https://wger.de/api/v2/exercise/?limit=55&category=" + category + "&language=2"
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
 
-        console.log(data);
         $("#category").empty();
         for (i = 0; i < data.results.length; i++) {
 
-          //if(exerciseList.includes(data.results[i].id)){
-          var exerciseEl = document.createElement("button");
-          exerciseEl.classList.add("exercise-btn");
-          exerciseEl.textContent = data.results[i].name;
-          exerciseEl.setAttribute("id", data.results[i].id);
-          $("#category").append(exerciseEl);
-         // }
+          if (exerciseList.includes(data.results[i].id)) {
+            var exerciseEl = document.createElement("button");
+            exerciseEl.classList.add("exercise-btn");
+            exerciseEl.textContent = data.results[i].name;
+            exerciseEl.setAttribute("id", data.results[i].id);
+            $("#category").append(exerciseEl);
+          }
         }
 
         $(".exercise-btn").click(function (event) {
@@ -132,7 +140,7 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
   if (exerciseCard.find("button").prevObject[0].innerText.includes(exerciseName)) { return; }
 
   exerciseCard.find(".card-text").empty(); //removes rest
-  exerciseCard.append("<button type=\"button\" id=\"" + exerciseId + "\" class=\"" + exerciseName + " workout-btn\">" + exerciseName + " place set and rep buttons here" + "</button>");
+  exerciseCard.append("<button type=\"button\" id=\"" + exerciseId + "\" class=\"" + exerciseName + " workout-btn\">" + exerciseName + "</button>");
 
   exerciseName = exerciseName.replaceAll(" ", "-");
   exerciseName = exerciseName.replaceAll(",", "-");
