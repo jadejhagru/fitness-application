@@ -16,7 +16,7 @@ This is a fitness application we built to help users who are brand new to workin
 
 ## How to Use
 
-User is brought to the home page. User clicks on "Build Your Profile" button which prompts them to the BMI calcuator. BMI is calculated and stored into local storage. At that point, user can click on the "Workouts" tab and can build their own work-outs on any day on the week. When a work-out is selected, instructions and a GIPHY is shown to help the user understand how to do the workout correctly.
+User is brought to the home page. User clicks on "Build Your Profile" button which prompts them to the BMI calcuator. BMI is calculated and stored into local storage. At that point, user can click on the "Workouts" tab and can build their own work-outs on any day on the week. When a work-out is selected, instructions and a Youtube video is shown to help the user understand how to do the workout correctly.
 
 ## Languages
 
