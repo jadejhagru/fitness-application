@@ -14,12 +14,9 @@ function BMI() {
         bmiFinal = bmio;
         saveBmi(bmiFinal);
 
-<<<<<<< HEAD
-=======
         document.getElementById("profile-button").outerHTML ="<a href= \'./workout.html \' ><button type=\"button\" id=\"profile-button\"\">Go To Workout</button></a>";
 };
 
->>>>>>> develop
 var saveBmi = function (bmiFinal) {
     localStorage.setItem("bmi", bmiFinal);
 };
