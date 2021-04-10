@@ -109,6 +109,7 @@ header {
     color: black;
     transition: 0.5s;
 }
+
  .row {
      justify-content: center;
  }
@@ -254,4 +255,5 @@ header {
         width: 8rem!important;
         font-size: 12px!important;
     }
+    
 }
