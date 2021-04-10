@@ -30,9 +30,9 @@ User is brought to the home page. User clicks on "Build Your Profile" button whi
 
 ### User Story 
 
-AS A BEGINNER that has 0 fitness experience
-I WANT to have an application that helps me start my fitness journey smoothly
-SO THAT I can live a healthier and balanced lifestyle
+AS A BEGINNER that has 0 fitness experience\
+I WANT to have an application that helps me start my fitness journey smoothly\
+SO THAT I can live a healthier and balanced lifestyle\
 
 ### Acceptance Criteria 
 
