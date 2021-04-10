@@ -107,6 +107,25 @@ var showExercises = function (category) {
   })
 };
 
+//if a workout is removed, remove it from localStorage
+var removeFromSchedule = function (exerciseCard, exerciseId) {
+  if (exerciseCard[0].id == "sunday") {
+    delete workout.sunday[workout.sunday.indexOf(exerciseId)];
+  } else if (exerciseCard[0].id == "monday") {
+    delete workout.monday[workout.monday.indexOf(exerciseId)];
+  } else if (exerciseCard[0].id == "tuesday") {
+    delete workout.tuesday[workout.tuesday.indexOf(exerciseId)];
+  } else if (exerciseCard[0].id == "wednesday") {
+    delete workout.wednesday[workout.wednesday.indexOf(exerciseId)];
+  } else if (exerciseCard[0].id == "thursday") {
+    delete workout.thursday[workout.thursday.indexOf(exerciseId)];
+  } else if (exerciseCard[0].id == "friday") {
+    delete workout.friday[workout.friday.indexOf(exerciseId)];
+  } else if (exerciseCard[0].id == "saturday") {
+    delete workout.saturday[workout.saturday.indexOf(exerciseId)];
+  }
+};
+
 //create exercise buttons in each day
 var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
 
@@ -131,6 +150,7 @@ var createExerciseButton = function (exerciseName, exerciseId, dayVar) {
       $(this).parent().find(".card-text").append("<p class=\"card-text\">Rest<span stlye=\"color: white;\"><i class=\"fas fa-bed\" aria-hidden=\"true\"></i></span></p>");
     };
 
+    removeFromSchedule(exerciseCard, exerciseId);
     $(this).remove();
   });
 
