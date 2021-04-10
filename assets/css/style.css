@@ -204,6 +204,13 @@ header {
     transition: 0.6s;
 }
 
+i:hover {
+    background: white;
+    color: black;
+    transition: 0.6s;
+    border-radius: 60px;
+}
+
 .modal-body {
     height: 60vh;
     overflow-y: auto;
