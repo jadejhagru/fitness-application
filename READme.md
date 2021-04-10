@@ -25,7 +25,9 @@ User is brought to the home page. User clicks on "Build Your Profile" button whi
 * Bootstrap
 * JavaScript 
 * jQuery
-* GIPHY API 
+* Google API 
+* Youtube Search API
+* Youtube iframe API
 * Wger.de REST API
 
 ### User Story 
