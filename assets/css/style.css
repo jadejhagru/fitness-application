@@ -209,6 +209,10 @@ header {
     overflow-y: auto;
 }
 
+iframe {
+    border-radius: 15px;
+}
+
 ::-webkit-scrollbar {
     width: 20px;
   }
