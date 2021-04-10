@@ -284,7 +284,7 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
   $(".modal-body").append("<div class=\"newdiv\"></div>");
 
   //Card image/GIF
-  $(".modal-body").find(".newdiv").append("<img class=\"exercise-graphic\"></img>");
+  $(".modal-body").find(".newdiv").append("<iframe class=\"exercise-graphic\"></iframe>");
 
   //Card name
   $(".modal-body").find(".newdiv").append("<h5 class=\"exercise-name\"></h5>");
@@ -384,14 +384,14 @@ var createExerciseCard = function () //dayId is the section it goes to in the da
         // }
       
       fetch(
-        'https://api.giphy.com/v1/gifs/search?api_key=pEDYeIUt9R8XnZUzlutQsGdmtpuWCJqf&q='+ data.name + "&rating=pg13"
+        'https://www.googleapis.com/youtube/v3/search/?q='+ data.name + '&key=AIzaSyD_e2KrYBug3VBuxVAZzfTZGcghcrrLPdU'
       )
         .then(function(response) {
           return response.json();
         })
         .then(function(response) {
 
-          $(".exercise-graphic").attr("src",response.data[0].images.downsized_large.url);
+          $(".exercise-graphic").attr("src",'https://www.youtube.com/embed/' + response.items[0].id.videoId) + '?enablejsapi=1';
       })
 
     //checks if exercise id is listed in the API
